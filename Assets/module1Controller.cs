@@ -10,6 +10,9 @@ public class module1Controller : MonoBehaviour
     private Vector2 coordC;
     private AudioSource sound;
 
+    public float distVal = 0.1f;
+    public bool nextStep = false;
+
     public float size = 1.0f;
 
     public float speed = 0.1f;
@@ -25,8 +28,8 @@ public class module1Controller : MonoBehaviour
     void Update()
     {
 
-        float dirX = pointeur.transform.position.x + Input.GetAxis("Horizontal") * speed;
-        float dirY = pointeur.transform.position.y + Input.GetAxis("Vertical") * speed;
+        float dirX = pointeur.transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        float dirY = pointeur.transform.position.y + Input.GetAxis("Vertical") * speed * Time.deltaTime;
         dirX = Mathf.Clamp(dirX,coordC.x-size,coordC.x + size);
         dirY = Mathf.Clamp(dirY,coordC.y-size,coordC.y + size);
 
@@ -39,7 +42,13 @@ public class module1Controller : MonoBehaviour
     {
         if (Vector3.Distance(sonar.transform.position,pointeur.transform.position) < sound.maxDistance)
         {
-            sound.volume = 1 - (Vector3.Distance(sonar.transform.position,pointeur.transform.position) / sound.maxDistance);
+            sound.volume = Mathf.Pow(1 - (Vector3.Distance(sonar.transform.position,pointeur.transform.position) / sound.maxDistance),4.0f);
+        }
+
+        if(Vector3.Distance(sonar.transform.position,pointeur.transform.position)< distVal)
+        {
+            nextStep = true;
+            //print("yes");
         }
     }
 }
