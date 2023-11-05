@@ -11,6 +11,9 @@ public class flicker : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    private void OnEnable()
+    {
         nextFlickerTime = Time.time;
     }
 
