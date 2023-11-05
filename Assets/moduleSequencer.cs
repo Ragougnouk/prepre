@@ -7,6 +7,9 @@ public class moduleSequencer : MonoBehaviour
     public module1Controller mod1;
     public module2Controller mod2;
     public mod3test mod3;
+    public TranslationGame mod3Alex;
+    public module4Controller mod4;
+
     public GameObject lit1,lit2,lit3;
 
 
@@ -45,6 +48,19 @@ public class moduleSequencer : MonoBehaviour
             }
         }
 
+        if(mod3.enabled && mod3Alex.enabled)
+        {
+            if (!lit3.activeSelf)
+            {
+                lit3.SetActive(true);
+            }
+
+            if (mod3Alex.nextStep)
+            {
+                StartCoroutine(mod3mod4());
+            }
+        }
+
 
     }
 
@@ -63,6 +79,15 @@ public class moduleSequencer : MonoBehaviour
         lit2.SetActive(false);
         yield return new WaitForSeconds(1);
         mod3.enabled = true;
+        mod3Alex.enabled = true;
         lit3.SetActive(true);
+    }
+    private IEnumerator mod3mod4()
+    {
+        mod3.enabled = false;
+        mod3Alex.enabled = false;
+        lit3.SetActive(false);
+        yield return new WaitForSeconds(1);
+        mod4.enabled = true;
     }
 }

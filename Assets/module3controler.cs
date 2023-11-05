@@ -17,6 +17,8 @@ public class TranslationGame : MonoBehaviour
     public Color incorrectColor = Color.red; // Couleur pour les caractères incorrects.
     private Color originalTextColor;
 
+    public bool nextStep = false;
+
     private string[] alienPhraseCharacters = new string[]
     {
         "Y", "O", "U", "A", "R", "E", "N", "O", "T", "A", "L", "O", "N", "E"
@@ -180,6 +182,7 @@ public class TranslationGame : MonoBehaviour
         if (isAllCorrect)
         {
             audioSource.PlayOneShot(CorrectSound);
+            nextStep = true;
             // Autres actions à effectuer si tout est correct..
         }
     }
