@@ -6,8 +6,8 @@ using TMPro; // Assurez-vous d'avoir TextMesh Pro importé et utilisé si vous u
 
 public class TranslationGame : MonoBehaviour
 {
-    public AudioClip correctSound;
-    public AudioClip errorSound; // ce bruit survient quand on veut valider alors que certains espaces sont vacants.
+    public AudioClip CorrectSound;
+    public AudioClip ErrorSound; // ce bruit survient quand on veut valider alors que certains espaces sont vacants.
     public AudioClip incorrectSound; //son quand il reste au moins une lettre à deviner
     public AudioClip buttonPressSound; // Son à jouer quand le bouton ou entrée est pressé.
     public AudioClip[] randomKeySounds; // Tableau pour stocker les bruits de clavier.
@@ -15,6 +15,8 @@ public class TranslationGame : MonoBehaviour
     public TMP_InputField[] inputFields; // Tableau contenant les 14 champs de saisie.
     public Button validateButton;        // Bouton pour valider la saisie.
     public Color incorrectColor = Color.red; // Couleur pour les caractères incorrects.
+    private Color originalTextColor;
+
     private string[] alienPhraseCharacters = new string[]
     {
         "Y", "O", "U", "A", "R", "E", "N", "O", "T", "A", "L", "O", "N", "E"
@@ -67,7 +69,7 @@ public class TranslationGame : MonoBehaviour
         if (randomKeySounds.Length > 0 && !(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
             int index = UnityEngine.Random.Range(0, randomKeySounds.Length); // Sélection aléatoire d'un index.
-            audioSource.PlayOneShot(randomKeySounds[index]); // Jouer le son au hasard.
+           audioSource.PlayOneShot(randomKeySounds[index]); // Jouer le son au hasard.
         }
     }
 
@@ -120,7 +122,7 @@ public class TranslationGame : MonoBehaviour
         // Si au moins un champ est vide, jouer le son d'erreur et ne rien faire de plus.
         if (!allFieldsFilled)
         {
-            audioSource.PlayOneShot(errorSound);
+           audioSource.PlayOneShot(ErrorSound);
             TMP_InputField firstEmptyField = FindFirstEmptyField();
             if (firstEmptyField != null)
             {
@@ -129,8 +131,8 @@ public class TranslationGame : MonoBehaviour
             return;
         }
 
-        // Jouer le son du bouton pressé.
-        audioSource.PlayOneShot(buttonPressSound);
+        //Jouer le son du bouton pressé.
+       audioSource.PlayOneShot(buttonPressSound);
 
         bool isAllCorrect = true;
 
@@ -151,13 +153,13 @@ public class TranslationGame : MonoBehaviour
                 inputFields[i].textComponent.color = incorrectColor;
                 StartCoroutine(FadeOutInputField(inputFields[i]));
                 inputFields[i].readOnly = false; // Assurez-vous que le champ n'est pas en readOnly si incorrect
-
                 isAllCorrect = false;
-                audioSource.PlayOneShot(incorrectSound); // Jouez le son d'erreur.
+               audioSource.PlayOneShot(incorrectSound); // Jouez le son d'erreur.
                 // Si c'est le premier champ incorrect, on le garde en mémoire.
                 if (firstIncorrectField == null)
                 {
                     firstIncorrectField = inputFields[i];
+                    
                 }
             }
         }
@@ -177,7 +179,7 @@ public class TranslationGame : MonoBehaviour
 
         if (isAllCorrect)
         {
-            audioSource.PlayOneShot(correctSound);
+            audioSource.PlayOneShot(CorrectSound);
             // Autres actions à effectuer si tout est correct..
         }
     }
@@ -196,7 +198,7 @@ public class TranslationGame : MonoBehaviour
 
     IEnumerator FadeOutInputField(TMP_InputField inputField)
     {
-        Color originalColor = inputField.textComponent.color; // Sauvegardez la couleur originale du texte.
+        Color originalColor = Color.white; // Sauvegardez la couleur originale du texte.
         inputField.textComponent.color = incorrectColor; // Changez la couleur en rouge pour indiquer une erreur.
         yield return new WaitForSeconds(1); // Attendez une seconde.
 
