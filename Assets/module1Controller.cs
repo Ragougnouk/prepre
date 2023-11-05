@@ -9,6 +9,7 @@ public class module1Controller : MonoBehaviour
     public GameObject sonar;
     private Vector2 coordC;
     private AudioSource sound;
+    private bool inMod;
 
     public float distVal = 0.1f;
     public bool nextStep = false;
@@ -48,6 +49,7 @@ public class module1Controller : MonoBehaviour
         if(Vector3.Distance(sonar.transform.position,pointeur.transform.position)< distVal)
         {
             nextStep = true;
+            sound.volume = 0;
             //print("yes");
         }
     }

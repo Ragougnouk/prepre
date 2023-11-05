@@ -6,6 +6,7 @@ public class moduleSequencer : MonoBehaviour
 {
     public module1Controller mod1;
     public module2Controller mod2;
+    public mod3test mod3;
     public GameObject lit1,lit2,lit3;
 
 
@@ -61,7 +62,7 @@ public class moduleSequencer : MonoBehaviour
         mod2.enabled = false;
         lit2.SetActive(false);
         yield return new WaitForSeconds(1);
-        //mod3.enabled = true;
+        mod3.enabled = true;
         lit3.SetActive(true);
     }
 }
