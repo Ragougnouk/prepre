@@ -7,6 +7,8 @@ public class module2Controller : MonoBehaviour
     public GameObject cadre;
     public GameObject caseDet;
     public GameObject point1,point2, point3;
+    public GameObject signal;
+    public GameObject ecran;
 
     private bool p1,p2,p3 = false;
 
@@ -22,6 +24,14 @@ public class module2Controller : MonoBehaviour
     void Start()
     {
         coordC = cadre.transform.position;
+
+    }
+
+    private void OnEnable()
+    {
+        ecran.SetActive(false);
+        signal.SetActive(true);
+
     }
 
     // Update is called once per frame
