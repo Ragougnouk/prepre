@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: alien
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 119007055
   material: {fileID: 7814378281699170439}
-  materialHashCode: 0
+  materialHashCode: -1147090929
   m_Version: 1.1.0
   m_SourceFontFileGUID: 1c5ae2fb63e276e43ac2edec323f4e64
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 1c5ae2fb63e276e43ac2edec323f4e64, type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
     m_PointSize: 5
     m_Scale: 1
     m_UnitsPerEM: 2048
-    m_LineHeight: 5
+    m_LineHeight: 7
     m_AscentLine: 5
     m_CapLine: 5
     m_MeanLine: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubscriptSize: 0.5
     m_UnderlineOffset: 0.37353516
     m_UnderlineThickness: 0.24902344
-    m_StrikethroughOffset: 0
+    m_StrikethroughOffset: 2
     m_StrikethroughThickness: 0.24902344
     m_TabWidth: 4
   m_GlyphTable:
