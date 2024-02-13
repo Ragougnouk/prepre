@@ -15,16 +15,20 @@ public class introCine : MonoBehaviour
     private bool ceparti = false;
     public GameObject introScene;
 
+    public LeanTweenType easeType;
+    public LeanTweenType easeType1;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        LeanTween.moveY(main,0.0f,3.0f).setOnComplete(startGame).setEase(easeType);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        /*if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             startGame();
         }
@@ -32,10 +36,10 @@ public class introCine : MonoBehaviour
         if (ceparti)
         {
             main.transform.position = Vector3.MoveTowards(main.transform.position, new Vector3(0,0,-10), speed * Time.deltaTime);
-        }
+        }*/
     }
 
-    private IEnumerator introLaunch()
+    /*private IEnumerator introLaunch()
     {
         yield return new WaitForSeconds(2);
         //screen1.SetActive(true);
@@ -45,13 +49,23 @@ public class introCine : MonoBehaviour
 
         introScene.SetActive(false);
         enabled = false;
+    }*/
+
+    private void firstLaunch()
+    {
+        modSeq.step1 = true;
+        mod1.enabled = true;
+
+        introScene.SetActive(false);
+        enabled = false;
     }
 
     public void startGame()
     {
-        StartCoroutine(introLaunch());
+        //StartCoroutine(introLaunch());
         title.SetActive(false);
-        ceparti = true;
+        LeanTween.moveX(main,0.0f,1.5f).setDelay(3.0f).setOnComplete(firstLaunch).setEase(easeType1);
+        //ceparti = true;
         //mod1.enabled = true;
     }
 }
