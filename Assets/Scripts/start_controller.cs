@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class start_controller : MonoBehaviour
 {
 	public GameObject startMenu;
+	public GameObject background;
 	public GameObject nameMenu;
 	public GameObject errorM;
 	public TMP_InputField nameInputField;
@@ -60,7 +61,8 @@ public class start_controller : MonoBehaviour
     private void launchAnim()
     {
     	nameMenu.SetActive(false);
-    	LeanTween.moveY(startMenu.GetComponent<RectTransform>(),365.0f,0.75f).setDelay(0.5f).setOnComplete(changeScene).setEase(easeType);
+    	LeanTween.moveY(background.GetComponent<RectTransform>(),140.0f,1.0f).setDelay(0.5f).setEase(easeType);
+    	LeanTween.moveY(startMenu.GetComponent<RectTransform>(),500.0f,1.0f).setDelay(0.5f).setOnComplete(changeScene).setEase(easeType);
     }
 
 

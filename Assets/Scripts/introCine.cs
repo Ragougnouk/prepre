@@ -56,7 +56,7 @@ public class introCine : MonoBehaviour
         modSeq.step1 = true;
         mod1.enabled = true;
 
-        introScene.SetActive(false);
+        //introScene.SetActive(false);
         enabled = false;
     }
 
@@ -64,7 +64,7 @@ public class introCine : MonoBehaviour
     {
         //StartCoroutine(introLaunch());
         title.SetActive(false);
-        LeanTween.moveX(main,0.0f,1.5f).setDelay(3.0f).setOnComplete(firstLaunch).setEase(easeType1);
+        LeanTween.moveX(main,0.0f,1.5f).setDelay(5.0f).setOnComplete(firstLaunch).setEase(easeType1);
         //ceparti = true;
         //mod1.enabled = true;
     }
