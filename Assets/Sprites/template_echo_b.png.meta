@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -153,9 +153,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 753
+        y: 752
         width: 512
-        height: 270
+        height: 272
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,9 +446,9 @@ TextureImporter:
       name: paysage
       rect:
         serializedVersion: 2
-        x: 681
+        x: 683
         y: 753
-        width: 342
+        width: 340
         height: 74
       alignment: 6
       pivot: {x: 0, y: 0}
@@ -513,8 +513,8 @@ TextureImporter:
         y: 774
         width: 7
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -527,7 +527,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cadre_mod4_2
+      name: cadre_mod3_2
       rect:
         serializedVersion: 2
         x: 570
@@ -677,9 +677,9 @@ TextureImporter:
       name: switch_down
       rect:
         serializedVersion: 2
-        x: 543
+        x: 541
         y: 778
-        width: 6
+        width: 7
         height: 10
       alignment: 6
       pivot: {x: 0, y: 0}
@@ -698,9 +698,9 @@ TextureImporter:
       name: switch_up
       rect:
         serializedVersion: 2
-        x: 543
+        x: 541
         y: 767
-        width: 6
+        width: 7
         height: 9
       alignment: 6
       pivot: {x: 0, y: 0}
@@ -825,9 +825,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 470
-        y: 499
+        y: 500
         width: 340
-        height: 230
+        height: 229
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1052,13 +1052,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: a2
+      name: schema_cryptage
       rect:
         serializedVersion: 2
         x: 911
-        y: 708
-        width: 9
-        height: 10
+        y: 707
+        width: 47
+        height: 12
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1068,69 +1068,6 @@ TextureImporter:
       bones: []
       spriteID: f1d6f10abd0168e4c9ce5e97921e695c
       internalID: 1463710477
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: b
-      rect:
-        serializedVersion: 2
-        x: 921
-        y: 708
-        width: 9
-        height: 10
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23c3499069fc4204688c9f1adf3533e9
-      internalID: 1583457311
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: c
-      rect:
-        serializedVersion: 2
-        x: 931
-        y: 708
-        width: 9
-        height: 10
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f20b1c20d0f9ff7498162a926637a7d1
-      internalID: -285840139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enter
-      rect:
-        serializedVersion: 2
-        x: 949
-        y: 707
-        width: 9
-        height: 12
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76ee3787ac8dce343aaa39c58bcb7fa5
-      internalID: -406494274
       vertices: []
       indices: 
       edges: []
@@ -1267,7 +1204,7 @@ TextureImporter:
         serializedVersion: 2
         x: 891
         y: 668
-        width: 26
+        width: 59
         height: 21
       alignment: 6
       pivot: {x: 0, y: 0}
@@ -1278,27 +1215,6 @@ TextureImporter:
       bones: []
       spriteID: 829858aebd0e9e94aa61f48f943a004b
       internalID: -1954408400
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: man_down
-      rect:
-        serializedVersion: 2
-        x: 921
-        y: 668
-        width: 14
-        height: 8
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93bfd1d70d5500a43804d2e050c43704
-      internalID: 784931727
       vertices: []
       indices: 
       edges: []
@@ -1475,8 +1391,8 @@ TextureImporter:
       name: cadre_vide
       rect:
         serializedVersion: 2
-        x: 529
-        y: 66
+        x: 378
+        y: 6
         width: 21
         height: 21
       alignment: 6
@@ -1496,8 +1412,8 @@ TextureImporter:
       name: cadre_plein
       rect:
         serializedVersion: 2
-        x: 558
-        y: 66
+        x: 407
+        y: 6
         width: 21
         height: 21
       alignment: 6
@@ -1517,7 +1433,7 @@ TextureImporter:
       name: titre
       rect:
         serializedVersion: 2
-        x: 581
+        x: 511
         y: 30
         width: 386
         height: 81
@@ -1535,7 +1451,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cadre_mod4_1
+      name: cadre_mod3_1
       rect:
         serializedVersion: 2
         x: 560
@@ -1593,69 +1509,6 @@ TextureImporter:
       bones: []
       spriteID: b9d2491167a00af4484e3955d7aa6a7f
       internalID: 927403552
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: man_up
-      rect:
-        serializedVersion: 2
-        x: 921
-        y: 681
-        width: 14
-        height: 8
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc3dc58382202e0459b9167dc1a14818
-      internalID: -1028567421
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: off
-      rect:
-        serializedVersion: 2
-        x: 939
-        y: 682
-        width: 11
-        height: 4
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16d6d949b710af146b962c95453cb01a
-      internalID: -1315179488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: on
-      rect:
-        serializedVersion: 2
-        x: 939
-        y: 672
-        width: 7
-        height: 4
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ccd24824548137d4e90b384025a8e741
-      internalID: -2021569923
       vertices: []
       indices: 
       edges: []
@@ -1975,6 +1828,279 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: arrow_switch_screen
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 670
+        width: 11
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2d9fb0b698563347a8d317a39c4fda3
+      internalID: 1879307255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cursor
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 672
+        width: 12
+        height: 17
+      alignment: 9
+      pivot: {x: 0.37278748, y: 0.9163747}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 330e7d027d7e7b443bc9094336ebf699
+      internalID: -1719753420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rayures
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 662
+        width: 30
+        height: 30
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fedcc8d22783933439404caaa742e11e
+      internalID: 1179646796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fleche_carnet
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 144
+        width: 22
+        height: 26
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa9dc95f34ac8554491f8023c3738894
+      internalID: 947104152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mod1_anim_b
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 34
+        width: 13
+        height: 13
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b42fa907fa1ffa4696a40b660e2d8a4
+      internalID: -1338068488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mod1_anim_c
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 30
+        width: 21
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be0321497aa21e04080356adfa37df32
+      internalID: -826946777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mod1_anim_a
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 37
+        width: 7
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 838d21083af01474aa4f0d84ab5453d0
+      internalID: -868526549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mod1_anim_d
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 32
+        width: 17
+        height: 17
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39a5b94f0d8f5f640b07e5d34d076f9b
+      internalID: -1929888997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mod1_anim_e
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 30
+        width: 21
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c8b7db37ab3cca4ebfda9234ae2652a
+      internalID: -1379839131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mod1_anim_f
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 30
+        width: 21
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96cd6851df28dd343948b1516c25adb6
+      internalID: -1026906983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: parab_light_b
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 1003
+        width: 21
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bd1f484666f53e41b5750d3d3f2b042
+      internalID: -767315490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: haut_affiche
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 870
+        width: 36
+        height: 28
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1380c23d52a003849b4a2f812ee0400f
+      internalID: -1943502545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cote_fenetre_droit
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 459
+        width: 80
+        height: 293
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb494bcf77f9c6418da7faaf1c17eb3
+      internalID: 1918886959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1987,15 +2113,14 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       a: -840725854
-      a2: 1463710477
+      arrow_switch_screen: 1879307255
       b: 1583457311
       bas_fenetre: 905595922
       batiment_droit: 1173266948
       batiment_gauche: 1127587828
       branch_mod1: 1829793170
-      c: -285840139
-      cadre_mod4_1: -1092838339
-      cadre_mod4_2: -1303527850
+      cadre_mod3_1: -1092838339
+      cadre_mod3_2: -1303527850
       cadre_plein: -912607597
       cadre_vide: -2124780676
       carnet_1: -1092658495
@@ -2007,12 +2132,14 @@ TextureImporter:
       cloud_2: 2064731645
       cloud_3: -1483702186
       color_sky: 1100891036
+      cote_fenetre_droit: 1918886959
       "cot\xE9_fenetre": -1422914332
       croq_disjoncteur: -1954408400
       croq_mod1: 1693080394
       croq_mod2: 857056856
       croq_mod3: -1613153801
       curseur_signal: 426123027
+      cursor: -1719753420
       d: 458102753
       dis_light: 1497317550
       dis_light_mid: -667646125
@@ -2024,8 +2151,10 @@ TextureImporter:
       eye_mod2_2: 1668355974
       eye_mod4: -795413576
       fenetre: 300491708
+      fleche_carnet: 947104152
       game_screen: -1348677907
       gradient: 701218460
+      haut_affiche: -1943502545
       haut_fenetre: -315144758
       left: -57627655
       man_down: 784931727
@@ -2033,6 +2162,19 @@ TextureImporter:
       manette_bas: -1538440504
       manette_haut: 1878078157
       mire: 927403552
+      mod1_anim_1: -212309098
+      mod1_anim_2: -671871633
+      mod1_anim_3: 1096545176
+      mod1_anim_4: 1499277847
+      mod1_anim_5: -459561371
+      mod1_anim_6: -2120326900
+      mod1_anim_7: -982826353
+      mod1_anim_a: -868526549
+      mod1_anim_b: -1338068488
+      mod1_anim_c: -826946777
+      mod1_anim_d: -1929888997
+      mod1_anim_e: -1379839131
+      mod1_anim_f: -1026906983
       mod1_blank_screen: 986439771
       mod1_light: -518726881
       mod1_lit: -1964945725
@@ -2049,10 +2191,13 @@ TextureImporter:
       off: -1315179488
       on: -2021569923
       parab_light: -4440517
+      parab_light_b: -767315490
       paysage: 568974431
       question: 1516636782
+      rayures: 1179646796
       right: 839224949
       s: 707288478
+      schema_cryptage: 1463710477
       signal_1: 1832333699
       signal_2: -294385411
       signal_3: -743009070

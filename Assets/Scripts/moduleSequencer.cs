@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class moduleSequencer : MonoBehaviour
     public Module3Controller mod3b;
     public module4Controller mod4;
     public boxNumber boxNb;
+
+    public breakerController bc;
+    public carnet_fill cf;
+    public carnet_anim ca;
 
 
     public GameObject goScreen;
@@ -36,7 +41,7 @@ public class moduleSequencer : MonoBehaviour
     void Update()
     {
         //print("loop number "+loopNumber);
-        if(mod1.enabled && step1)
+        /*if(mod1.enabled && step1)
         {
             if (!lit1.activeSelf)
             {
@@ -81,7 +86,7 @@ public class moduleSequencer : MonoBehaviour
                 StartCoroutine(mod3mod4());
             }
 
-        }
+        }*/
 
 
     }
@@ -155,4 +160,84 @@ public class moduleSequencer : MonoBehaviour
             goScreen.SetActive(true);
         }
     }
+
+    public IEnumerator winMod1()
+    {
+        step1 = false;
+        cf.etape += 1;
+        step2 = true;
+        if(Array.Exists(cf.etapeList, element => element == cf.etape))
+        {
+            cf.newLine();
+            ca.open();
+        }
+        mod1.inactive();
+        yield return new WaitForSeconds(1);
+        mod2.active();
+    }
+
+    public IEnumerator winMod2()
+    {
+        step2 = false;
+        cf.etape += 1;
+        step3 = true;
+        if(Array.Exists(cf.etapeList, element => element == cf.etape))
+        {
+            cf.newLine();
+            ca.open();
+        }
+        mod2.inactive();
+        /*if(!mod3b.on)
+        {
+            mod3.turnOn();
+            mod3b.turnOn();
+        }*/
+        yield return new WaitForSeconds(1);
+        boxNb.readMessage();
+        mod3.active();
+        mod3b.active();
+    }
+
+    public IEnumerator winMod3()
+    {
+        step3 = false;
+        cf.etape += 1;
+        step1 = true;
+        if(Array.Exists(cf.etapeList, element => element == cf.etape))
+        {
+            cf.newLine();
+            ca.open();
+        }
+        loopNumber += 1;
+        yield return new WaitForSeconds(1.0f);
+        mod3.reInit();
+        mod3b.turnOff();
+        mod4.updateText();
+        StartCoroutine(newLoop());
+    }
+
+    private IEnumerator newLoop()
+    {
+        yield return new WaitForSeconds(1.0f);
+        bc.reset();
+    }
+
+    public void backStep()
+    {
+        step2 = step3 = false;
+        if(step1)
+        {
+
+        }
+        if(step2)
+        {
+            cf.etape -= 1;
+        }
+        if(step3)
+        {
+            cf.etape -= 2;
+        }
+        step1 = true;
+    }
+
 }

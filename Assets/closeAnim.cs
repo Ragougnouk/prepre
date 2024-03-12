@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class close_anim : MonoBehaviour
+public class closeAnim : MonoBehaviour
 {
-    public GameObject carnet;
-    public GameObject icon;
-    
+    public carnet_anim ca;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +20,6 @@ public class close_anim : MonoBehaviour
 
     public void close()
     {
-        carnet.SetActive(false);
-        icon.SetActive(true);
+        ca.close();
     }
 }

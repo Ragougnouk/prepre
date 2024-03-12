@@ -1,72 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class introCine : MonoBehaviour
 {
-    public GameObject title;
     public GameObject main;
-    public GameObject screen1;
-    public GameObject reticule;
-    public module1Controller mod1;
-    public moduleSequencer modSeq;
-    public float speed = 1.0f;
-
-    private bool ceparti = false;
-    public GameObject introScene;
+    public carnet_anim carnet;
+    public float speed1 = 1.0f;
+    public float speed2 = 1.0f;
+    public float waintingTime = 0.0f;
 
     public LeanTweenType easeType;
     public LeanTweenType easeType1;
+
+    public flicker flckr;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        LeanTween.moveY(main,0.0f,3.0f).setOnComplete(startGame).setEase(easeType);
+        LeanTween.moveY(main,0.0f,speed1)/*.setOnComplete(startGame)*/.setEase(easeType);
+        lightOn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        if(Input.GetKeyDown("space"))
         {
             startGame();
         }
-        //StartCoroutine(introLaunch());
-        if (ceparti)
-        {
-            main.transform.position = Vector3.MoveTowards(main.transform.position, new Vector3(0,0,-10), speed * Time.deltaTime);
-        }*/
     }
-
-    /*private IEnumerator introLaunch()
-    {
-        yield return new WaitForSeconds(2);
-        //screen1.SetActive(true);
-        //reticule.SetActive(true);
-        modSeq.step1 = true;
-        mod1.enabled = true;
-
-        introScene.SetActive(false);
-        enabled = false;
-    }*/
 
     private void firstLaunch()
     {
-        modSeq.step1 = true;
-        mod1.enabled = true;
-
-        //introScene.SetActive(false);
+        carnet.open();
         enabled = false;
     }
 
     public void startGame()
     {
-        //StartCoroutine(introLaunch());
-        title.SetActive(false);
-        LeanTween.moveX(main,0.0f,1.5f).setDelay(5.0f).setOnComplete(firstLaunch).setEase(easeType1);
-        //ceparti = true;
-        //mod1.enabled = true;
+        LeanTween.moveX(main,-0.36f,speed2).setDelay(waintingTime).setOnComplete(pauseFirst).setEase(easeType1);
+    }
+
+    private void pauseFirst()
+    {
+        StartCoroutine(pauseLaunch());
+    }
+
+    private IEnumerator pauseLaunch()
+    {
+        yield return new WaitForSeconds(1.0f);
+        firstLaunch();
+    }
+
+    async void lightOn()
+    {
+        await Task.Delay(5000);
+        flckr.enabled = true;
     }
 }
 

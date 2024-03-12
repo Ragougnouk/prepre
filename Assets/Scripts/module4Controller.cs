@@ -12,6 +12,9 @@ public class module4Controller : MonoBehaviour
 
     public moduleSequencer modSeq;
 
+    public GameObject light;
+    public GameObject screen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,31 @@ public class module4Controller : MonoBehaviour
 
     public void updateText()
     {
-        messages = messageFile.stringList[modSeq.loopNumber];
+        messages = messageFile.stringList[modSeq.loopNumber-1];
         txt.SetText(messages);
+    }
+
+    public void turnOn()
+    {
+        txt.enabled = true;
+        light.SetActive(true);
+        screen.SetActive(true);
+    }
+
+    public void turnOff()
+    {
+        txt.enabled = false;
+        light.SetActive(false);
+        screen.SetActive(false);
+    }
+
+    public void active()
+    {
+
+    }
+
+    public void inactive()
+    {
+
     }
 }

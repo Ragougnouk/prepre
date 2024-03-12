@@ -7,10 +7,15 @@ using TMPro;
 
 public class Module3Controller : MonoBehaviour
 {
+    public carnet_anim ca;
+    public carnet_fill cf;
 
     private TMP_InputField[] inputFields;
     public MessagesList messageFile;
     public moduleSequencer modSeq;
+
+    public life_system ls;
+
     private string message;
     private string[] messageLetters;
 
@@ -26,7 +31,17 @@ public class Module3Controller : MonoBehaviour
 
     public bool nextStep = false;
 
+    private bool actif = false;
 
+    public GameObject light;
+    public GameObject canvasMod3Up;
+
+    public Sprite val;
+    public Color correctColor;
+
+    public bool on = false;
+
+    public flicker flckr;
 
     //public List<TMP_InputField> inputFields = new List<TMP_InputField>();
 
@@ -39,34 +54,43 @@ public class Module3Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Vérifiez si l'utilisateur appuie sur backspace.
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if(actif && !ca.actif)
         {
-            for (int i = 0; i < inputFields.Length; i++)
+            
+             // Vérifiez si l'utilisateur appuie sur backspace.
+            if (Input.GetKeyDown(KeyCode.Backspace))
             {
-                if (inputFields[i].isFocused && i > 0 && inputFields[i].text.Length == 0)
+                for (int i = 0; i < inputFields.Length; i++)
                 {
-                    // Focus sur le champ précédent si actuel est vide.
-                    FocusInputField(inputFields[i - 1]);
+                    if (inputFields[i].isFocused && i > 0 && inputFields[i].text.Length == 0)
+                    {
+                        // Focus sur le champ précédent si actuel est vide.
+                        FocusInputField(inputFields[i - 1]);
+                    }
                 }
             }
+            // Vérifier si la touche "Entrée" est appuyée.
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                ValidateTranslation(); // Appelle la fonction de validation lorsque "Entrée" est appuyée.
+            }
+            else if (Input.anyKeyDown) // Vérifie si n'importe quelle touche est pressée.
+            {
+                PlayRandomKeySound();
+            }
+
+            if(!AreAllFieldsFilled() && !Input.GetKeyDown(KeyCode.Backspace))
+            {
+                reFocus();
+            }
         }
-        // Vérifier si la touche "Entrée" est appuyée.
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            ValidateTranslation(); // Appelle la fonction de validation lorsque "Entrée" est appuyée.
-        }
-        else if (Input.anyKeyDown) // Vérifie si n'importe quelle touche est pressée.
-        {
-            PlayRandomKeySound();
-        }
+        
 
     }
 
     void OnEnable()
     {
-        validateButton.onClick.AddListener(ValidateTranslation);
+        /*validateButton.onClick.AddListener(ValidateTranslation);
         messageLettersFill(modSeq.loopNumber);
         if (inputFields.Length > 0)
         {
@@ -78,7 +102,7 @@ public class Module3Controller : MonoBehaviour
         foreach (var field in inputFields)
         {
             field.onValueChanged.AddListener(delegate { CheckAutoTab(field); });
-        }
+        }*/
     }
 
 
@@ -133,7 +157,7 @@ public class Module3Controller : MonoBehaviour
         // Si au moins un champ est vide, jouer le son d'erreur et ne rien faire de plus.
         if (!allFieldsFilled)
         {
-           audioSource.PlayOneShot(ErrorSound);
+            audioSource.PlayOneShot(ErrorSound);
             TMP_InputField firstEmptyField = FindFirstEmptyField();
             if (firstEmptyField != null)
             {
@@ -143,7 +167,7 @@ public class Module3Controller : MonoBehaviour
         }
 
         //Jouer le son du bouton pressé.
-       audioSource.PlayOneShot(buttonPressSound);
+        audioSource.PlayOneShot(buttonPressSound);
 
         bool isAllCorrect = true;
 
@@ -155,17 +179,19 @@ public class Module3Controller : MonoBehaviour
             if (string.Equals(inputFields[i].text, messageLetters[i], StringComparison.OrdinalIgnoreCase))
             {
                 // Si c'est correct, mettre le champ en readOnly.
+                inputFields[i].GetComponent<Image>().sprite = val;
+                inputFields[i].textComponent.color = correctColor;
                 inputFields[i].readOnly = true;
                 inputFields[i].interactable = false; // Désactiver le champ pour clarifier visuellement qu'il ne peut plus être modifié.
             }
             else
             {
                 // Si c'est incorrect, on change la couleur en rouge et on planifie la disparition.
-                inputFields[i].textComponent.color = incorrectColor;
+                //inputFields[i].textComponent.color = incorrectColor;
                 StartCoroutine(FadeOutInputField(inputFields[i]));
                 inputFields[i].readOnly = false; // Assurez-vous que le champ n'est pas en readOnly si incorrect
                 isAllCorrect = false;
-               audioSource.PlayOneShot(incorrectSound); // Jouez le son d'erreur.
+                audioSource.PlayOneShot(incorrectSound); // Jouez le son d'erreur.
                 // Si c'est le premier champ incorrect, on le garde en mémoire.
                 if (firstIncorrectField == null)
                 {
@@ -178,20 +204,16 @@ public class Module3Controller : MonoBehaviour
         // Si tout n'est pas correct, on met le focus sur le premier champ incorrect.
         if (!isAllCorrect && firstIncorrectField != null)
         {
+            ls.loseHP();
             FocusInputField(firstIncorrectField);
             // d'autres actions pour gérer un champ incorrect
-        }
-
-        // Si tout n'est pas correct, on met le focus sur le premier champ incorrect.
-        if (!isAllCorrect && firstIncorrectField != null)
-        {
-            FocusInputField(firstIncorrectField);
         }
 
         if (isAllCorrect)
         {
             audioSource.PlayOneShot(CorrectSound);
             nextStep = true;
+            StartCoroutine(success());
             // Autres actions à effectuer si tout est correct..
         }
     }
@@ -210,7 +232,7 @@ public class Module3Controller : MonoBehaviour
 
     IEnumerator FadeOutInputField(TMP_InputField inputField)
     {
-        Color originalColor = Color.white; // Sauvegardez la couleur originale du texte.
+        Color originalColor = inputField.textComponent.color; // Sauvegardez la couleur originale du texte.
         inputField.textComponent.color = incorrectColor; // Changez la couleur en rouge pour indiquer une erreur.
         yield return new WaitForSeconds(1); // Attendez une seconde.
 
@@ -226,7 +248,7 @@ public class Module3Controller : MonoBehaviour
                 // Réactiver le champ de saisie pour la saisie et lui redonner le focus si nécessaire.
                 if (inputField.text.Length == 0)
                 {
-                    FocusInputField(inputField);
+                    //FocusInputField(inputField);
                 }
             }
         }
@@ -289,11 +311,83 @@ public class Module3Controller : MonoBehaviour
     }
 
     public void reInit()
-    {
-        foreach(TMP_InputField inF in inputFields)
+    {   
+        if (inputFields != null && inputFields.Length != 0)
         {
-            inF.readOnly = true;
+            foreach(TMP_InputField inF in inputFields)
+            {
+                inF.readOnly = true;
+            }
+            inputFields = new TMP_InputField[0];
         }
-        inputFields = new TMP_InputField[0];
+    }
+
+    public void turnOn()
+    {
+        on = true;
+        light.SetActive(true);
+        canvasMod3Up.SetActive(true);
+    }
+
+    public void turnOff()
+    {
+        on = false;
+        light.SetActive(false);
+        flckr.enabled = false;
+        canvasMod3Up.SetActive(false);
+        reInit();
+    }
+
+    public void active()
+    {
+        actif = true;
+        flckr.enabled = true;
+        validateButton.onClick.AddListener(ValidateTranslation);
+        messageLettersFill(modSeq.loopNumber);
+        if (inputFields.Length > 0)
+        {
+            // Focus automatique sur le premier InputField.
+            FocusInputField(inputFields[0]);
+        }
+
+        // Abonnez chaque InputField à un événement qui vérifie la longueur de son contenu.
+        foreach (var field in inputFields)
+        {
+            field.onValueChanged.AddListener(delegate { CheckAutoTab(field); });
+        }
+    }
+
+    public void inactive()
+    {
+        actif = false;
+        flckr.enabled = false;
+    }
+
+    void reFocus()
+    {
+        // Check if any input field is currently focused
+        bool anyInputFieldFocused = false;
+        foreach (var inputField in inputFields)
+        {
+            if (inputField.isFocused)
+            {
+                anyInputFieldFocused = true;
+                break;
+            }
+        }
+
+        // If no input field is focused, focus the first one
+        if (!anyInputFieldFocused)
+        {
+            TMP_InputField firstEmptyField = FindFirstEmptyField();
+            FocusInputField(firstEmptyField);
+        }
+    }
+
+    private IEnumerator success()
+    {
+        actif = false;
+        yield return new WaitForSeconds(1);
+        StartCoroutine(modSeq.winMod3());
     }
 }

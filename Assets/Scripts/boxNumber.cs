@@ -34,6 +34,73 @@ public class boxNumber : MonoBehaviour
     void OnEnable()
     {
 
+        /*float canvasWidth = parentCanvas.GetComponent<RectTransform>().rect.width;
+        message = messageFile.stringList[modSeq.loopNumber];
+        message += " ";
+        int lastSpace = -1;
+        int returnValue = 0;
+        for (int i = 0; i < message.Length; i++)
+        {
+            //print("row = "+ rowX +", i = "+ i + ", letter = " +message[i]);
+            if(message[i] == ' ')
+            {
+
+                if (rowX * boxWidth > canvasWidth)
+                {
+                    //print("rowX = "+ rowX);
+                    
+                    returnValue += lastSpace + 1;
+                    rowX = i - returnValue;
+                    lastSpace = -1;
+                    rowY -= 1;
+                }
+
+
+                for (int j = lastSpace + 1; j < rowX; j++)
+                {
+                    GameObject letter = Instantiate(letterBox, parentCanvas.transform);
+                    letters.Add(letter);
+                    
+                    int offsetX = j * boxWidth;
+                    int offsetY = rowY * boxHeight ;
+
+                    RectTransform boxTransform = letter.GetComponent<RectTransform>();
+                    boxTransform.SetParent(parentCanvas.transform, false);
+
+                    boxTransform.anchoredPosition = new Vector2(offsetX, offsetY);
+
+                }
+                lastSpace = i - returnValue;
+
+
+            }
+            rowX += 1;
+        }
+
+        populateList();*/
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    /*void OnDisable()
+    {
+        rowX = 0;
+        rowY = 0;
+        foreach (GameObject letter in letters)
+        {
+            Destroy(letter);
+        }
+    }*/
+
+
+    public void readMessage()
+    {
+
         float canvasWidth = parentCanvas.GetComponent<RectTransform>().rect.width;
         message = messageFile.stringList[modSeq.loopNumber];
         message += " ";
@@ -80,22 +147,6 @@ public class boxNumber : MonoBehaviour
         populateList();
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    /*void OnDisable()
-    {
-        rowX = 0;
-        rowY = 0;
-        foreach (GameObject letter in letters)
-        {
-            Destroy(letter);
-        }
-    }*/
 
     void populateList()
     {
