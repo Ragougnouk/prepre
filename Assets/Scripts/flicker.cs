@@ -7,6 +7,8 @@ public class flicker : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public float flickerInterval = 0.2f; // Adjust this to change the flicker speed
     private float nextFlickerTime;
+    private float firstTime;
+    private float inTime;
 
     private void Start()
     {
@@ -14,11 +16,14 @@ public class flicker : MonoBehaviour
     }
     private void OnEnable()
     {
-        nextFlickerTime = Time.time;
+        //firstTime = Time.time;
+        nextFlickerTime = Time.time + flickerInterval;
+        
     }
 
     private void Update()
     {
+        //inTime = Time.time - firstTime;
         if (Time.time > nextFlickerTime)
         {
             // Toggle the sprite's visibility by enabling/disabling the SpriteRenderer component

@@ -405,9 +405,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 514
-        y: 811
+        y: 817
         width: 117
-        height: 53
+        height: 52
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -827,7 +827,7 @@ TextureImporter:
         x: 470
         y: 500
         width: 340
-        height: 229
+        height: 230
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1430,27 +1430,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: titre
-      rect:
-        serializedVersion: 2
-        x: 511
-        y: 30
-        width: 386
-        height: 81
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ec7d288232ab444b85f433afff8902f
-      internalID: 344554052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: cadre_mod3_1
       rect:
         serializedVersion: 2
@@ -1559,8 +1538,8 @@ TextureImporter:
       name: mod4_light
       rect:
         serializedVersion: 2
-        x: 651
-        y: 859
+        x: 514
+        y: 807
         width: 5
         height: 10
       alignment: 6
@@ -1731,8 +1710,8 @@ TextureImporter:
         y: 151
         width: 41
         height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2101,6 +2080,258 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: neon0
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 0
+        width: 263
+        height: 73
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e0340992de32284ca1a0d3f048bc9e0
+      internalID: 1836255827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neon2
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 243
+        height: 38
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3371bc4e6f6b344d91f478e6a63e311
+      internalID: 1404425574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciphered1
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 911
+        width: 110
+        height: 2
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 043cdf8f5e782f44aaa0bdd83c7e138a
+      internalID: 1158908300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciphered2
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 909
+        width: 110
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e72f3708f436b4486efba168c6abac
+      internalID: -1396839648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciphered3
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 907
+        width: 110
+        height: 10
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92eacf7598b6b884a893ea88844c5c95
+      internalID: -2118244122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciphered4
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 905
+        width: 110
+        height: 14
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b547dd9535581d54eb972816ee823aa4
+      internalID: 370122516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciphered5
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 903
+        width: 110
+        height: 18
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d92c62ea18daf3b4fa99a0f59d86da40
+      internalID: -1798368622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciphered6
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 901
+        width: 110
+        height: 22
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca4a8f7fe2fc9e48b8431f11a7d54de
+      internalID: -487447027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciphered7
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 898
+        width: 110
+        height: 28
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7a0162b147c8945b091f4c26606a3a
+      internalID: -361536638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mod1_detected
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 141
+        width: 46
+        height: 9
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3642c092d9fcd5e42976482036089cf1
+      internalID: -1650103645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dis_light_mid_red
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 787
+        width: 11
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff65fd040f310f641bc6fe149a706baf
+      internalID: 2075083319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dis_light_red
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 780
+        width: 11
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d177370818350f49893537704c43239
+      internalID: 1395748635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2141,8 +2372,17 @@ TextureImporter:
       curseur_signal: 426123027
       cursor: -1719753420
       d: 458102753
+      deciphered1: 1158908300
+      deciphered2: -1396839648
+      deciphered3: -2118244122
+      deciphered4: 370122516
+      deciphered5: -1798368622
+      deciphered6: -487447027
+      deciphered7: -361536638
       dis_light: 1497317550
       dis_light_mid: -667646125
+      dis_light_mid_red: 2075083319
+      dis_light_red: 1395748635
       disjoncteur: -1487411993
       down: -75940031
       enter: -406494274
@@ -2176,6 +2416,7 @@ TextureImporter:
       mod1_anim_e: -1379839131
       mod1_anim_f: -1026906983
       mod1_blank_screen: 986439771
+      mod1_detected: -1650103645
       mod1_light: -518726881
       mod1_lit: -1964945725
       mod1_located: 1645521542
@@ -2186,6 +2427,11 @@ TextureImporter:
       mod3_light: -2092594301
       mod4_light: -965379381
       mod4_lit: -1648098683
+      mod4_static_1: 915516031
+      mod4_static_2: -32372957
+      mod4_static_3: 460674229
+      neon0: 1836255827
+      neon2: 1404425574
       oeil_mod3_1: -1649523179
       oeil_mod3_2: -2120205142
       off: -1315179488

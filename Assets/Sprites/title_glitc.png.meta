@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d1e7df2c439d4cc44bbf9ea0eecf4c8c
+guid: ae128825a5d10164b84aa6cdd9feb95b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -149,96 +149,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: title_background
+      name: title_tri
       rect:
         serializedVersion: 2
         x: 0
-        y: 172
-        width: 512
-        height: 339
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae94dceac3288294cae00e2cea3c2c2d
-      internalID: -520651188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: start_button
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 116
-        width: 132
-        height: 39
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9af05a4cab6a30499b6bfc639c732e8
-      internalID: -1403816783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cadre_vide
-      rect:
-        serializedVersion: 2
-        x: 201
-        y: 125
-        width: 21
-        height: 21
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 7, y: 7, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab5d3ac5c439f3842afe483f7303a61f
-      internalID: 1987300739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cadre_plein
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 125
-        width: 21
-        height: 21
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 6, y: 6, z: 6, w: 6}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f25afe14084eeba4b8eaa901923e7cb5
-      internalID: 2001382837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: titre
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 20
-        width: 386
+        y: 175
+        width: 392
         height: 81
       alignment: 6
       pivot: {x: 0, y: 0}
@@ -247,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f9e34ad13c3f5743a2273786a175bfa
-      internalID: -634794147
+      spriteID: 94259997acf053842bc3268b0fe8ef29
+      internalID: 832621757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: color
+      name: title_up
       rect:
         serializedVersion: 2
-        x: 502
-        y: 171
-        width: 1
-        height: 1
+        x: 45
+        y: 149
+        width: 289
+        height: 25
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,8 +184,197 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 042aa29cc8463954f841990212358620
-      internalID: -817960170
+      spriteID: 110f3a38632cc1140b4ecb554e26059f
+      internalID: 1388120759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_simple
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 392
+        height: 77
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a4dad568cde0de4295d68ae2ba6e253
+      internalID: -1056783840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_down
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 97
+        width: 289
+        height: 25
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06a26d6030a7ccb48a405c1f77c7042b
+      internalID: 635116308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_mid
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 122
+        width: 289
+        height: 27
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cee6fce46402346bde837c534828d6
+      internalID: 545346275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_eye_1
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 40
+        width: 19
+        height: 176
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d01d9ad867cb524fa5c8ca9fbbdfa9d
+      internalID: 1128828616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_eye_2
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 40
+        width: 19
+        height: 176
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11faccd005abbdb45889b0ea80a2eab4
+      internalID: -241729612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_eye_3
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 40
+        width: 19
+        height: 176
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e386bb9478fe2174a9b074274810e579
+      internalID: 1762159055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_eye_4
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 40
+        width: 19
+        height: 176
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c2acecfa0c8d346868e38966c6ffac
+      internalID: 173574276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_eye_5
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 40
+        width: 19
+        height: 176
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a755a33662decbb40b70e76c9d821a69
+      internalID: 1870327037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_eye_6
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 40
+        width: 19
+        height: 176
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb9148cde8be0204abf793dd156e7b32
+      internalID: -2033047030
       vertices: []
       indices: 
       edges: []
@@ -285,12 +390,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cadre_plein: 2001382837
-      cadre_vide: 1987300739
-      color: -817960170
-      start_button: -1403816783
-      title_background: -520651188
-      titre: -634794147
+      title_down: 635116308
+      title_eye_1: 1128828616
+      title_eye_2: -241729612
+      title_eye_3: 1762159055
+      title_eye_4: 173574276
+      title_eye_5: 1870327037
+      title_eye_6: -2033047030
+      title_glitc_3: 1429423390
+      title_glitc_4: 1578760410
+      title_mid: 545346275
+      title_simple: -1056783840
+      title_tri: 832621757
+      title_up: 1388120759
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

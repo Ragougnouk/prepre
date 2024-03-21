@@ -6,7 +6,9 @@ public class life_system : MonoBehaviour
 {
     public breakerController bc;
     public GameObject lightScreen;
+    public GameObject lightScreenRed;
     public GameObject[] lights;
+    public GameObject[] lightsRed;
     public carnet_fill cf;
 
     public int healthPoints;
@@ -77,4 +79,25 @@ public class life_system : MonoBehaviour
         bc.powerOff();
         //healthPoints =10;
     }
+
+public void lightsOnRed()
+    {
+        /*for(int i=0; i < healthPoints; i++)
+        {
+            //lights[i].SetActive(true);
+            StartCoroutine(lightRythm(lights[i]));
+        }*/
+        lightScreenRed.SetActive(true);
+        StartCoroutine(lightRythmRed());
+    }
+
+    private IEnumerator lightRythmRed()
+    {
+        for(int i=0; i < healthPoints; i++)
+        {
+            lightsRed[i].SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
 }

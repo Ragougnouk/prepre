@@ -24,12 +24,14 @@ public class module1Controller : MonoBehaviour
     public GameObject screenDark;
     public GameObject screen1;
     public GameObject reticule;
+    public GameObject words;
 
     public float distVal = 0.1f;
     public bool nextStep = false;
 
-    public float size = 5.24f;
-    public float minSize = 0.5f;
+    public float size = 4.92f;
+    public float minSize = 0.8f;
+    public float margin = 0.4f;
 
     public float speed = 0.1f;
     public float pxSize = 0.04f;
@@ -88,6 +90,10 @@ public class module1Controller : MonoBehaviour
 
         if (actif && !ca.actif)
         {
+            if(Input.GetKey("up") || Input.GetKey("down") || Input.GetKey("left") || Input.GetKey("right"))
+            {
+                words.SetActive(false);
+            }
             float dirX = pointeur.transform.position.x + Input.GetAxisRaw("Horizontal") * speed *Time.deltaTime;
             float dirY = pointeur.transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.deltaTime ;
             dirX = Mathf.Round(dirX/pxSize) * pxSize;
@@ -145,22 +151,23 @@ public class module1Controller : MonoBehaviour
     {
         //screen1.SetActive(false);
         //reticule.SetActive(false);
-        float randomX = Random.Range(minX,maxX);
-        float randomY = Random.Range(minY,maxY);
-        while(randomX < coordC.position.x-minSize && randomY < coordC.position.y - minSize)
+        float randomX = Random.Range(minX + margin,maxX - margin);
+        float randomY = Random.Range(minY + margin,maxY - margin);
+        while(Vector3.Distance(pointeur.transform.position, new Vector3(randomX, randomY,0)) <minSize)
         {
-            randomX = Random.Range(minX,maxX);
-            randomY = Random.Range(minY,maxY);
+            randomX = Random.Range(minX + margin,maxX - margin);
+            randomY = Random.Range(minY + margin,maxY - margin);
         }
         //print("x "+ minX+" "+maxX+", y "+minY+" "+maxY);
         sonar.transform.position = new Vector3(randomX ,randomY,0);
         nextFlickerTime = Time.time;
-        reticule.transform.position = startPos;
+        //reticule.transform.position = startPos;
     }
 
     public void turnOn(bool delay)
     {
         on = true;
+        //words.SetActive(true);
         emptyScreen.SetActive(true);
         light.SetActive(true);
         screenDark.SetActive(true);
@@ -174,12 +181,14 @@ public class module1Controller : MonoBehaviour
             screenDark.SetActive(false);
             emptyScreen.SetActive(false);
             screen1.SetActive(true);
+            //words.SetActive(true);
             actif = true;
         } 
     }
 
     public void turnOff()
     {
+        words.SetActive(false);
         on = false;
         actif = false;
         light.SetActive(false);
@@ -191,11 +200,14 @@ public class module1Controller : MonoBehaviour
 
     private IEnumerator turnOnDelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
+        words.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
         reticule.SetActive(true);
         screenDark.SetActive(false);
         emptyScreen.SetActive(false);
         screen1.SetActive(true);
+        //words.SetActive(true);
         actif = true;
     }
 
@@ -219,5 +231,6 @@ public class module1Controller : MonoBehaviour
     public void inactive()
     {
         actif= false;
+        light.GetComponent<SpriteRenderer>().enabled = true;
     }
 }

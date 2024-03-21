@@ -8,6 +8,7 @@ public class carnet_anim : MonoBehaviour
     public GameObject iconOpen;
     public GameObject iconClose;
     public bool actif = false;
+    public Animator anim;
 
     public carnet_fill cf;
     
@@ -20,7 +21,10 @@ public class carnet_anim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            anim.SetTrigger("close");;
+        }
     }
 
     public void open()

@@ -361,6 +361,7 @@ public class Module3Controller : MonoBehaviour
     {
         actif = false;
         flckr.enabled = false;
+        light.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     void reFocus()
@@ -387,7 +388,7 @@ public class Module3Controller : MonoBehaviour
     private IEnumerator success()
     {
         actif = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.0f);
         StartCoroutine(modSeq.winMod3());
     }
 }

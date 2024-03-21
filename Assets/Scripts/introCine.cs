@@ -16,6 +16,8 @@ public class introCine : MonoBehaviour
 
     public flicker flckr;
 
+    private bool first = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +29,17 @@ public class introCine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("space"))
+        if(Input.GetKeyDown("space") && first)
         {
             startGame();
+            first = false;
         }
     }
 
     private void firstLaunch()
     {
         carnet.open();
-        enabled = false;
+        //enabled = false;
     }
 
     public void startGame()
@@ -51,7 +54,7 @@ public class introCine : MonoBehaviour
 
     private IEnumerator pauseLaunch()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         firstLaunch();
     }
 

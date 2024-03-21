@@ -25,8 +25,10 @@ public class moduleSequencer : MonoBehaviour
     public GameObject lit1,lit2,lit3;
 
     public bool step1, step2, step3;
+    public bool inLoop = false;
 
     public int loopNumber = 0;
+    public int loopLoop = 4;
 
 
     // Start is called before the first frame update
@@ -91,7 +93,7 @@ public class moduleSequencer : MonoBehaviour
 
     }
 
-    private IEnumerator mod1mod2()
+    /*private IEnumerator mod1mod2()
     {
         step2 = true;
         mod1.enabled = false;
@@ -147,7 +149,7 @@ public class moduleSequencer : MonoBehaviour
         loopNumber += 1;
         gameOver();
         //mod1.enabled = true;
-    }
+    }*/
 
     void gameOver()
     {
@@ -166,11 +168,9 @@ public class moduleSequencer : MonoBehaviour
         step1 = false;
         cf.etape += 1;
         step2 = true;
-        if(Array.Exists(cf.etapeList, element => element == cf.etape))
-        {
+        
             cf.newLine();
-            ca.open();
-        }
+            
         mod1.inactive();
         yield return new WaitForSeconds(1);
         mod2.active();
@@ -181,11 +181,9 @@ public class moduleSequencer : MonoBehaviour
         step2 = false;
         cf.etape += 1;
         step3 = true;
-        if(Array.Exists(cf.etapeList, element => element == cf.etape))
-        {
+        
             cf.newLine();
-            ca.open();
-        }
+            
         mod2.inactive();
         /*if(!mod3b.on)
         {
@@ -196,6 +194,7 @@ public class moduleSequencer : MonoBehaviour
         boxNb.readMessage();
         mod3.active();
         mod3b.active();
+        mod4.startDec();;
     }
 
     public IEnumerator winMod3()
@@ -203,28 +202,35 @@ public class moduleSequencer : MonoBehaviour
         step3 = false;
         cf.etape += 1;
         step1 = true;
-        if(Array.Exists(cf.etapeList, element => element == cf.etape))
+        
+        //cf.newLine();
+        
+        if(loopNumber != loopLoop)
         {
-            cf.newLine();
-            ca.open();
+            loopNumber += 1;
         }
-        loopNumber += 1;
-        yield return new WaitForSeconds(1.0f);
+        else
+        {
+            inLoop = true;
+        }
+        yield return new WaitForSeconds(0.1f);
         mod3.reInit();
         mod3b.turnOff();
-        mod4.updateText();
+        mod4.loopWin();
+        //mod4.updateText();
+
         StartCoroutine(newLoop());
     }
 
     private IEnumerator newLoop()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
+        cf.newLine();
         bc.reset();
     }
 
     public void backStep()
     {
-        step2 = step3 = false;
         if(step1)
         {
 
@@ -237,6 +243,7 @@ public class moduleSequencer : MonoBehaviour
         {
             cf.etape -= 2;
         }
+        step2 = step3 = false;
         step1 = true;
     }
 

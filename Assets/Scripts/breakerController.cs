@@ -58,6 +58,10 @@ public class breakerController : MonoBehaviour
     {
         mainSwitchOff.SetActive(false);
         mainSwitchOn.SetActive(true);
+        if(ms.inLoop)
+        {
+            return;
+        }
         //mainSwitchOn.GetComponent<Button>().interactable = false;
         ls.lightsOn();
         StartCoroutine(littleLeds(true));
@@ -66,11 +70,20 @@ public class breakerController : MonoBehaviour
 
     public void powerOff()
     {
+        mainSwitchOff.SetActive(true);
+        mainSwitchOn.SetActive(false);
+
+        if(ms.inLoop)
+        {
+            StartCoroutine(afterLoop());
+            return;
+        }
+
+        ms.backStep();
         mod1Delay = false;
         StopCoroutine(onDelay);
         onDelay = powerOnDelay();
-        mainSwitchOff.SetActive(true);
-        mainSwitchOn.SetActive(false);
+        
         ls.lightsOut();
         ls.healthPoints = 10;
         mod1.turnOff();
@@ -80,7 +93,6 @@ public class breakerController : MonoBehaviour
         mod3b.turnOff();
         mod4.turnOff();
         boxNb.reInit();
-        ms.backStep();
         StartCoroutine(littleLeds(false));
     }
 
@@ -101,7 +113,7 @@ public class breakerController : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             cf.etape = 1;
             cf.newLine();
-            ca.open();
+            //ca.open();
             first = false;
         }
     }
@@ -109,7 +121,9 @@ public class breakerController : MonoBehaviour
     public void reset()
     {
         mod1.turnOff();
+        //mod1.reInit();
         mod2.turnOff();
+        //mod2.reInit();
         mod3.turnOff();
         mod3b.reInit();
         mod3b.turnOff();
@@ -117,7 +131,7 @@ public class breakerController : MonoBehaviour
         boxNb.reInit();
         ls.healthPoints = 10;
         ls.lightsOn();
-        mod1.turnOn(false);
+        mod1.turnOn(true);  
         mod2.turnOn();
         mod3.turnOn();
         mod3b.turnOn();
@@ -167,6 +181,27 @@ public class breakerController : MonoBehaviour
                 led.SetActive(false);
             }
         }
+    }
+
+    private IEnumerator afterLoop()
+    {
+        ms.backStep();
+        mod1Delay = false;
+        StopCoroutine(onDelay);
+        onDelay = powerOnDelay();
+        
+        ls.lightsOut();
+        ls.healthPoints = 10;
+        mod1.turnOff();
+        mod2.turnOff();
+        mod3.turnOff();
+        mod3b.reInit();
+        mod3b.turnOff();
+        mod4.turnOff();
+        boxNb.reInit();
+        StartCoroutine(littleLeds(false));
+        yield return new WaitForSeconds(5.0f);
+        ls.lightsOnRed();
     }
 
     //public void 
