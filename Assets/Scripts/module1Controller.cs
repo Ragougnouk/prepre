@@ -48,9 +48,13 @@ public class module1Controller : MonoBehaviour
     private float minY;
     private float maxY;
 
-    private bool actif = false;
+    public bool actif = false;
 
     public bool on = false;
+
+    private Vector3 initPos;
+
+    public breakerController bc;
 
     // Start is called before the first frame update
     void Start()
@@ -88,9 +92,9 @@ public class module1Controller : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (actif && !ca.actif)
+        if (actif && !ca.actif && on)
         {
-            if(Input.GetKey("up") || Input.GetKey("down") || Input.GetKey("left") || Input.GetKey("right"))
+            if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
                 words.SetActive(false);
             }
@@ -166,7 +170,8 @@ public class module1Controller : MonoBehaviour
 
     public void turnOn(bool delay)
     {
-        on = true;
+        initPos = pointeur.transform.position;
+        
         //words.SetActive(true);
         emptyScreen.SetActive(true);
         light.SetActive(true);
@@ -182,7 +187,8 @@ public class module1Controller : MonoBehaviour
             emptyScreen.SetActive(false);
             screen1.SetActive(true);
             //words.SetActive(true);
-            actif = true;
+            //actif = true;
+            on = true;
         } 
     }
 
@@ -190,11 +196,23 @@ public class module1Controller : MonoBehaviour
     {
         words.SetActive(false);
         on = false;
-        actif = false;
+        //actif = false;
         light.SetActive(false);
         screen1.SetActive(false);
         reticule.SetActive(false);
         anim.SetActive(false);
+        pointeur.transform.position = initPos;
+        //reInit();
+    }
+
+    public void turnOffReset()
+    {
+        words.SetActive(false);
+        light.SetActive(false);
+        screen1.SetActive(false);
+        reticule.SetActive(false);
+        anim.SetActive(false);
+        pointeur.transform.position = initPos;
         reInit();
     }
 
@@ -208,11 +226,13 @@ public class module1Controller : MonoBehaviour
         emptyScreen.SetActive(false);
         screen1.SetActive(true);
         //words.SetActive(true);
-        actif = true;
+        //actif = true;
+        on = true;
     }
 
     private IEnumerator success()
     {
+        initPos = pointeur.transform.position;
         anim.SetActive(true);
         yield return new WaitForSeconds(1);
         /*if(Array.Exists(cf.etapeList, element => element == cf.etape))
@@ -220,12 +240,17 @@ public class module1Controller : MonoBehaviour
             cf.newLine();
             ca.open();
         }*/
+        //on = false;
         StartCoroutine(ms.winMod1());
     }
 
     public void active()
     {
         actif = true;
+        if(!on)
+        {
+            bc.flickOn(0,1);
+        }
     }
 
     public void inactive()

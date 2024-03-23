@@ -11,6 +11,7 @@ public class module2Controller : MonoBehaviour
     public carnet_anim ca;
     public moduleSequencer ms;
     public flicker flckr;
+    public breakerController bc;
 
     public GameObject light;
     public GameObject blankScreen;
@@ -38,7 +39,7 @@ public class module2Controller : MonoBehaviour
     public float size = 1.0f;
 
     public bool nextStep = false;
-    private bool actif = false;
+    public bool actif = false;
 
     public bool on = false;
 
@@ -63,7 +64,7 @@ public class module2Controller : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (actif && !ca.actif)
+        if (actif && !ca.actif && on)
         {
             viseurMove();
         }
@@ -291,7 +292,17 @@ public class module2Controller : MonoBehaviour
     public void turnOff()
     {
         on = false;
-        actif = false;
+        //actif = false;
+        flckr.enabled = false;
+        ecran.SetActive(false);
+        signal.SetActive(false);
+        blankScreen.SetActive(false);
+        light.SetActive(false);
+        //reInit();
+    }
+
+    public void turnOffReset()
+    {
         flckr.enabled = false;
         ecran.SetActive(false);
         signal.SetActive(false);
@@ -308,6 +319,10 @@ public class module2Controller : MonoBehaviour
         ecran.SetActive(true);
         signal.SetActive(true);
         blankScreen.SetActive(false);
+        if(!on)
+        {
+            bc.flickOn(2,3);
+        }
     }
 
     public void inactive()

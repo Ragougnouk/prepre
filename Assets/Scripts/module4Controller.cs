@@ -12,6 +12,7 @@ public class module4Controller : MonoBehaviour
     public MessagesList messageFile;
 
     public moduleSequencer modSeq;
+    public breakerController bc;
 
     public GameObject light;
     public GameObject screen;
@@ -21,6 +22,7 @@ public class module4Controller : MonoBehaviour
 
     private IEnumerator inProgress;
 
+    public bool on = true;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,10 @@ public class module4Controller : MonoBehaviour
 
     public void updateText()
     {
+        if(!on)
+        {
+            bc.flickOn(6,7);
+        }
         messages = messageFile.stringList[modSeq.loopNumber-1];
         txt.SetText(messages);
     }

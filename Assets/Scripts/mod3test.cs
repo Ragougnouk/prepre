@@ -12,6 +12,8 @@ public class mod3test : MonoBehaviour
 
     public GameObject canvasMod3Down;
 
+    public bool on = false;
+
     // Start is called before the first frame update
     void Start()
     {

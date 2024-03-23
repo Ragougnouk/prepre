@@ -2332,6 +2332,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: onglet_com_off
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 87
+        width: 41
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ec4809bc5c9c04bb34eb97852a6594
+      internalID: 1761061580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: onglet_ET_on
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 61
+        width: 41
+        height: 26
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d03c18631cc044faeb6aeef5f0597f
+      internalID: 604667679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: onglet_com_on
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 87
+        width: 41
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515b2e12075361f4c8ddb0fdb25d9a9f
+      internalID: -157906362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: onglet_ET_off
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 61
+        width: 41
+        height: 26
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2582798270d49a44e8d2e0d687c459ff
+      internalID: -1098490781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2435,7 +2519,10 @@ TextureImporter:
       oeil_mod3_1: -1649523179
       oeil_mod3_2: -2120205142
       off: -1315179488
-      on: -2021569923
+      onglet_ET_off: -1098490781
+      onglet_ET_on: 604667679
+      onglet_com_off: 1761061580
+      onglet_com_on: -157906362
       parab_light: -4440517
       parab_light_b: -767315490
       paysage: 568974431

@@ -31,7 +31,7 @@ public class Module3Controller : MonoBehaviour
 
     public bool nextStep = false;
 
-    private bool actif = false;
+    public bool actif = false;
 
     public GameObject light;
     public GameObject canvasMod3Up;
@@ -42,6 +42,7 @@ public class Module3Controller : MonoBehaviour
     public bool on = false;
 
     public flicker flckr;
+    public breakerController bc;
 
     //public List<TMP_InputField> inputFields = new List<TMP_InputField>();
 
@@ -54,7 +55,7 @@ public class Module3Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(actif && !ca.actif)
+        if(actif && !ca.actif && on)
         {
             
              // Vérifiez si l'utilisateur appuie sur backspace.
@@ -341,6 +342,10 @@ public class Module3Controller : MonoBehaviour
     public void active()
     {
         actif = true;
+        if(!on)
+        {
+            bc.flickOn(4,5);
+        }
         flckr.enabled = true;
         validateButton.onClick.AddListener(ValidateTranslation);
         messageLettersFill(modSeq.loopNumber);

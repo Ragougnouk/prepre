@@ -190,7 +190,7 @@ public class moduleSequencer : MonoBehaviour
             mod3.turnOn();
             mod3b.turnOn();
         }*/
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         boxNb.readMessage();
         mod3.active();
         mod3b.active();

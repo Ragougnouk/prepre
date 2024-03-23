@@ -101,4 +101,10 @@ public class staticNoise : MonoBehaviour
         return texture;
     }
 
+    public void stopNoise()
+    {
+        screen.enabled = false;
+        active = false;
+    }
+
 }
