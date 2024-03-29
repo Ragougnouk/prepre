@@ -17,6 +17,11 @@ public class staticNoise : MonoBehaviour
     public float noiseUpdateInterval = 1f; // Interval to update noise
     private float timer = 0f;
 
+    public AudioSource source;
+    public AudioClip clip;
+
+    public bool mono = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,12 @@ public class staticNoise : MonoBehaviour
         if(active)
         {   
             timer += Time.deltaTime;
+
+            if(!source.isPlaying && mono)
+            {
+                source.clip = clip;
+                source.Play();
+            }
 
             // Check if it's time to update noise
             if (timer >= noiseUpdateInterval)
@@ -49,6 +60,10 @@ public class staticNoise : MonoBehaviour
         else if (!active && screen.enabled)
         {
             screen.enabled = false;
+            if(source.isPlaying)
+            {
+                source.Stop();
+            }
         }
     }
 
@@ -105,6 +120,7 @@ public class staticNoise : MonoBehaviour
     {
         screen.enabled = false;
         active = false;
+        source.Stop();
     }
 
 }

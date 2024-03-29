@@ -40,7 +40,7 @@ public class module1Controller : MonoBehaviour
     public GameObject light;
     public float flickerInterval = 0.2f; // Adjust this to change the flicker speed
 
-    private Vector2 startPos;
+    //private Vector2 startPos;
     private float nextFlickerTime;
 
     private float minX;
@@ -56,11 +56,13 @@ public class module1Controller : MonoBehaviour
 
     public breakerController bc;
 
+    public bool randomTarget = false;
+
     // Start is called before the first frame update
     void Start()
     {
         //coordC = cadre.transform.position;
-        startPos = reticule.transform.position;
+        //startPos = reticule.transform.position;
         sound = sonar.GetComponent<AudioSource>();
         minX = coordC.position.x;
         maxX = coordC.position.x+size;
@@ -120,6 +122,16 @@ public class module1Controller : MonoBehaviour
                 // Set the time for the next flicker
                 nextFlickerTime = Time.time + flickerInterval;
             }
+        }
+
+        if(!actif && on && !randomTarget)
+        {
+            randomTarget = true;
+        }
+
+        if(randomTarget && (actif || !on))
+        {
+            randomTarget = false;
         }
         
     }
@@ -232,7 +244,7 @@ public class module1Controller : MonoBehaviour
 
     private IEnumerator success()
     {
-        initPos = pointeur.transform.position;
+        //initPos = pointeur.transform.position;
         anim.SetActive(true);
         yield return new WaitForSeconds(1);
         /*if(Array.Exists(cf.etapeList, element => element == cf.etape))
@@ -257,5 +269,10 @@ public class module1Controller : MonoBehaviour
     {
         actif= false;
         light.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void retPos()
+    {
+        initPos = pointeur.transform.position;
     }
 }

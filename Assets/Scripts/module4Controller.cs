@@ -24,6 +24,8 @@ public class module4Controller : MonoBehaviour
 
     public bool on = true;
 
+    public bool randomTarget = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,15 @@ public class module4Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(on && !randomTarget)
+        {
+            randomTarget = true;
+        }
+
+        if(randomTarget && !on)
+        {
+            randomTarget = false;
+        }
     }
 
     public void updateText()

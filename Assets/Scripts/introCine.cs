@@ -7,6 +7,7 @@ public class introCine : MonoBehaviour
 {
     public GameObject main;
     public carnet_anim carnet;
+    public carnet_fill cf;
     public float speed1 = 1.0f;
     public float speed2 = 1.0f;
     public float waintingTime = 0.0f;
@@ -39,6 +40,7 @@ public class introCine : MonoBehaviour
     private void firstLaunch()
     {
         carnet.open();
+        cf.writeSound();
         //enabled = false;
     }
 

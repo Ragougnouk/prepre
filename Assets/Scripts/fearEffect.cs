@@ -15,9 +15,10 @@ public class fearEffect : MonoBehaviour
 
     public float caInt;
     public int hs;
-    public float increaseTime = 1.0f;
+    //public float increaseTime = 1.0f;
 
     public bool fearOn;
+    public fearEffect fe;
 
     // Start is called before the first frame update
     void Start()
@@ -39,16 +40,21 @@ public class fearEffect : MonoBehaviour
         }
     }
 
-    public void raiseFear()
+    public void raiseFear(float increaseTime)
     {
         LeanTween.value(house, 0.0f, 1.0f, increaseTime ).setOnUpdate( (float val) => { caInt = val ;} ).setEase(LeanTweenType.easeOutQuad);
         fearOn = true;
     }
 
-    public void stopFear()
+    public void stopFear(float downTime)
     {
         fearOn = false;
-        LeanTween.value(house, 1.0f, 0.0f, 1 ).setOnUpdate( (float val) => { caInt = val ;} ).setEase(LeanTweenType.easeOutQuad);
+        LeanTween.value(house, 1.0f, 0.0f, downTime ).setOnUpdate( (float val) => { caInt = val ;} ).setEase(LeanTweenType.easeOutQuad).setOnComplete(endFear);
         hs = 0;
+    }
+
+    private void endFear()
+    {
+        fe.enabled = false;
     }
 }

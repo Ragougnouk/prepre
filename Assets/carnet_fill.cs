@@ -26,6 +26,8 @@ public class carnet_fill : MonoBehaviour
     private TMP_Text lastText;
     private Color textColor;
 
+    public AudioSource audioWrite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,7 @@ public class carnet_fill : MonoBehaviour
     {
         if(etapeList.Contains(etape))
         {
+        	writeSound();
             if (etape==1)
             {
                 tuto0Text.GetComponent<TMP_Text>().color = textColor;
@@ -113,5 +116,10 @@ public class carnet_fill : MonoBehaviour
             tuto3Textb.SetActive(true);
             ca.open();
         }
+    }
+
+    public void writeSound()
+    {
+    	audioWrite.Play();
     }
 }

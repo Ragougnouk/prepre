@@ -20,6 +20,7 @@ public class moduleSequencer : MonoBehaviour
     public carnet_fill cf;
     public carnet_anim ca;
 
+    public staticNoise mod1Static;
 
     public GameObject goScreen;
     public GameObject lit1,lit2,lit3;
@@ -217,6 +218,7 @@ public class moduleSequencer : MonoBehaviour
         mod3.reInit();
         mod3b.turnOff();
         mod4.loopWin();
+        mod1.retPos();
         //mod4.updateText();
 
         StartCoroutine(newLoop());

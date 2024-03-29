@@ -41,6 +41,8 @@ public class breakerController : MonoBehaviour
 
     public flicker[] lilFlick;
 
+    private bool inBoss = false;
+
     //private IEnumerator lLeds;
 
     // Start is called before the first frame update
@@ -68,6 +70,7 @@ public class breakerController : MonoBehaviour
             return;
         }
         //mainSwitchOn.GetComponent<Button>().interactable = false;
+        re.canvasSwitchOn();
         ls.lightsOn();
         StartCoroutine(littleLeds(true));
         StartCoroutine(onDelay);
@@ -75,6 +78,12 @@ public class breakerController : MonoBehaviour
 
     public void powerOff()
     {
+        /*for(int i =0; i<6 ; i++)
+        {
+            re.stopNoise(i);
+        }*/
+
+
         mainSwitchOff.SetActive(true);
         mainSwitchOn.SetActive(false);
 
@@ -88,7 +97,7 @@ public class breakerController : MonoBehaviour
         mod1Delay = false;
         StopCoroutine(onDelay);
         onDelay = powerOnDelay();
-        
+        re.canvasSwitchOff();
         ls.lightsOut();
         ls.healthPoints = 10;
         mod1.turnOff();
@@ -117,7 +126,7 @@ public class breakerController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             cf.etape = 1;
-            cf.newLine(); 
+            cf.newLine();
             //ca.open();
             mod1.on = true;
             first = false;
@@ -194,6 +203,10 @@ public class breakerController : MonoBehaviour
 
     private IEnumerator afterLoop()
     {
+        if(inBoss)
+        {
+            yield break;
+        }
         ms.backStep();
         mod1Delay = false;
         StopCoroutine(onDelay);
@@ -211,6 +224,8 @@ public class breakerController : MonoBehaviour
         StartCoroutine(littleLeds(false));
         yield return new WaitForSeconds(5.0f);
         ls.lightsOnRed();
+        StartCoroutine(re.bossStart());
+        inBoss = true;
     }
 
     public void mod1Switch(bool off)
@@ -248,6 +263,8 @@ public class breakerController : MonoBehaviour
             //mod2.turnOff();
             mods[1].SetActive(false);
             mod2.on = false;
+
+            re.stopNoise(1);
         }
         else
         {
@@ -273,6 +290,8 @@ public class breakerController : MonoBehaviour
             mod3.on = false;
             mods[3].SetActive(false);
             mod3b.on = false;
+
+            re.stopNoise(2);
         }
         else
         {
@@ -294,6 +313,8 @@ public class breakerController : MonoBehaviour
             //mod2.turnOff();
             mods[4].SetActive(false);
             mod4.on = false;
+            re.stopNoise(5);
+
         }
         else
         {

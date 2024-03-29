@@ -44,6 +44,8 @@ public class Module3Controller : MonoBehaviour
     public flicker flckr;
     public breakerController bc;
 
+    public bool randomTarget = false;
+
     //public List<TMP_InputField> inputFields = new List<TMP_InputField>();
 
     // Start is called before the first frame update
@@ -84,6 +86,16 @@ public class Module3Controller : MonoBehaviour
             {
                 reFocus();
             }
+        }
+
+        if(!actif && on && !randomTarget)
+        {
+            randomTarget = true;
+        }
+
+        if(randomTarget && (actif || !on))
+        {
+            randomTarget = false;
         }
         
 

@@ -45,6 +45,8 @@ public class module2Controller : MonoBehaviour
 
     private int litLed = 0;
 
+    public bool randomTarget = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,7 +92,15 @@ public class module2Controller : MonoBehaviour
 
         }
         ledTest();*/
+        if(!actif && on && !randomTarget)
+        {
+            randomTarget = true;
+        }
 
+        if(randomTarget && (actif || !on))
+        {
+            randomTarget = false;
+        }
     }
 
     void Update()
