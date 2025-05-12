@@ -30,6 +30,7 @@ public class moduleSequencer : MonoBehaviour
 
     public int loopNumber = 0;
     public int loopLoop = 4;
+    public int lastLoopCount = 0;
 
 
     // Start is called before the first frame update
@@ -195,7 +196,7 @@ public class moduleSequencer : MonoBehaviour
         boxNb.readMessage();
         mod3.active();
         mod3b.active();
-        mod4.startDec();;
+        //mod4.startDec();
     }
 
     public IEnumerator winMod3()
@@ -206,13 +207,14 @@ public class moduleSequencer : MonoBehaviour
         
         //cf.newLine();
         
-        if(loopNumber != loopLoop)
+        if(loopNumber < loopLoop)
         {
             loopNumber += 1;
         }
         else
         {
             inLoop = true;
+            lastLoopCount += 1;
         }
         yield return new WaitForSeconds(0.1f);
         mod3.reInit();

@@ -10,11 +10,12 @@ public class randomEvent : MonoBehaviour
     public module1Controller mod1;
     public module2Controller mod2;
     public Module3Controller mod3;
+    public mod3test mod3b;
     public module4Controller mod4;
 
     public GameObject[] eyes;
 
-    //public float noisePercent = 0.001f;
+    public float noisePercent = 0.001f;
     public float eyePercent = 0.001f;
     private float lastTime;
 
@@ -26,6 +27,10 @@ public class randomEvent : MonoBehaviour
 
     public GameObject[] canvasNoise;
 
+    public bool eyeOn = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +40,12 @@ public class randomEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - lastTime > 1.0f)
+        if(Time.time - lastTime > 1.0f )
         {
-            randomNoise(0.001f);
+            randomNoise(noisePercent);
+
+            if (eyeOn) {randomEye(eyePercent);}
+            
             lastTime = Time.time;
         }
     }
@@ -71,19 +79,51 @@ public class randomEvent : MonoBehaviour
         }
     }
 
-    private void randomNoise(float noisePercent)
+    private void randomNoise(float noiseP)
     {
-        if(mod1.randomTarget && !statNoise[0].active)
+        /*if(mod1.randomTarget && !statNoise[0].active)
         {
             float randomValue = Random.value;
             //print(randomValue);
 
             // Check if the random number is within the activation chance
-            if (randomValue < noisePercent)
+            if (randomValue < noiseP)
             {
                 // Activate the noise effect
                 statNoise[0].active = true;
                 mod1.on = false;
+            }
+        }*/
+        float randomValue = Random.value;
+        if (randomValue < noiseP)
+        {
+
+            List<int> validGameObjects = new List<int>();
+
+            if(mod1.randomTarget && !statNoise[0].active)
+            {
+                validGameObjects.Add(1);
+            }
+
+            if(mod2.randomTarget && !statNoise[1].active)
+            {
+                validGameObjects.Add(2);
+            }
+
+            if(mod3.randomTarget && !statNoise[2].active)
+            {
+                validGameObjects.Add(3);
+            }
+
+            if(mod4.randomTarget && !statNoise[5].active)
+            {
+                validGameObjects.Add(4);
+            }
+
+            if (validGameObjects.Count > 0)
+            {
+                int randomGameObject = validGameObjects[Random.Range(0, validGameObjects.Count)];
+                startNoise(randomGameObject);
             }
         }
     }
@@ -121,6 +161,7 @@ public class randomEvent : MonoBehaviour
             statNoise[3].active = true;
             statNoise[4].active = true;
             mod3.on = false;
+            mod3b.on = false;
         }
 
         else if(module == 4)
@@ -136,19 +177,71 @@ public class randomEvent : MonoBehaviour
         statNoise[i].stopNoise();
     }
 
-    private void randomEye()
+    private void randomEye(float eyeP)
     {
-        if(!mod1.actif && mod1.on && eyes[0].activeSelf)
+        /*if(!mod1.actif && mod1.on && !eyes[0].activeSelf)
         {
             StartCoroutine(randomEyeCo(0));
+        }*/
+
+        float randomValue = Random.value;
+        if (randomValue < eyeP)
+        {
+
+            List<int> validGameObjects = new List<int>();
+
+            if(mod1.on)
+            {
+                validGameObjects.Add(1);
+            }
+
+            if(mod2.on)
+            {
+                validGameObjects.Add(2);
+            }
+
+            if(mod3.on)
+            {
+                validGameObjects.Add(3);
+            }
+
+            if(mod4.on)
+            {
+                validGameObjects.Add(4);
+            }
+
+            if (validGameObjects.Count > 0)
+            {
+                int randomGameObject = validGameObjects[Random.Range(0, validGameObjects.Count)];
+                StartCoroutine(randomEyeCo(randomGameObject));
+            }
         }
     }
 
     private IEnumerator randomEyeCo(int i)
     {
-        eyes[i].SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        eyes[i].SetActive(false);
+        float duration = Random.Range(0.0f,0.5f);
+        if (i == 3)
+        {
+            eyes[i-1].SetActive(true);
+            eyes[i].SetActive(true);
+            yield return new WaitForSeconds(duration);
+            eyes[i-1].SetActive(false);
+            eyes[i].SetActive(false);
+        }
+        else if (i == 4)
+        {
+            eyes[i].SetActive(true);
+            yield return new WaitForSeconds(duration);
+            eyes[i].SetActive(false);
+        }
+        else
+        {
+            eyes[i-1].SetActive(true);
+            yield return new WaitForSeconds(duration);
+            eyes[i-1].SetActive(false);
+        }
+        
     }
 
     private void eyeOpen(int i)

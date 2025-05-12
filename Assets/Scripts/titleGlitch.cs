@@ -17,6 +17,13 @@ public class titleGlitch : MonoBehaviour
     public GameObject eye;
     public GameObject[] eyes;
 
+    public AudioSource glitchSource;
+    public AudioClip[] glitchSounds;
+
+    public GameObject startButton;
+    public GameObject optionsButton;
+    public GameObject creditsButton;
+
     private float minDelay = 0.01f;
     private float maxDelay = 0.1f;
 
@@ -38,6 +45,57 @@ public class titleGlitch : MonoBehaviour
 
     IEnumerator GlitchEffect()
     {
+        /*yield return new WaitForSeconds(1.0f);
+
+        Color titleImageColor = titleTri.GetComponent<Image>().color;
+        titleImageColor.a = 0.05f;
+        titleTri.GetComponent<Image>().color = titleImageColor;
+
+        yield return new WaitForSeconds(1.0f);
+
+        titleImageColor.a = 0.1f;
+        titleTri.GetComponent<Image>().color = titleImageColor;
+
+        yield return new WaitForSeconds(1.0f);
+
+        titleImageColor.a = 0.3f;
+        titleTri.GetComponent<Image>().color = titleImageColor;
+
+        yield return new WaitForSeconds(1.0f);
+
+        titleImageColor.a = 0.7f;
+        titleTri.GetComponent<Image>().color = titleImageColor;
+
+        yield return new WaitForSeconds(1.0f);
+
+        titleImageColor.a = 1f;
+        titleTri.GetComponent<Image>().color = titleImageColor;*/
+
+        Color titleImageColor = titleTri.GetComponent<Image>().color;
+        float stepAlpha = 0.5f;
+        float timeAlpha = 0.0f;
+
+        while (titleImageColor.a < 1.0f)
+        {
+            yield return new WaitForSeconds(stepAlpha);
+            timeAlpha += (stepAlpha/5);
+            titleImageColor.a = Mathf.Pow(timeAlpha,5);
+            titleTri.GetComponent<Image>().color = titleImageColor;
+
+        }
+        yield return new WaitForSeconds(0.2f);
+
+        startButton.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);
+
+        optionsButton.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);
+
+        creditsButton.SetActive(true);
+
+        yield return new WaitForSeconds(0.4f);
         // Repeat infinitely
         while (true)
         {
@@ -75,6 +133,7 @@ public class titleGlitch : MonoBehaviour
 
     private void titleMain()
     {
+        glitchSource.Stop();
         allOff();
         titleTri.SetActive(true);
         StartCoroutine(mainSec());
@@ -82,6 +141,7 @@ public class titleGlitch : MonoBehaviour
 
     private void titleShiftOn()
     {
+        glitchSource.PlayOneShot(glitchSounds[Random.Range(0,glitchSounds.Length)]);
         allOff();
         titleShift.SetActive(true);
         float rX = Random.Range(-45,45);
@@ -94,6 +154,7 @@ public class titleGlitch : MonoBehaviour
 
     private void titleColorOn()
     {
+        glitchSource.PlayOneShot(glitchSounds[Random.Range(0,glitchSounds.Length)]);
         allOff();
         int randomIndex = Random.Range(0, col.Length);
         float rX = Random.Range(-45,45);
@@ -105,6 +166,7 @@ public class titleGlitch : MonoBehaviour
 
     private void eyeOn()
     {
+        glitchSource.PlayOneShot(glitchSounds[Random.Range(0,glitchSounds.Length)]);
         allOff();
         foreach(GameObject eyePiece in eyes)
         {

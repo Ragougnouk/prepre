@@ -11,6 +11,8 @@ public class module1Controller : MonoBehaviour
     public carnet_fill cf;
     public carnet_anim ca;
     public moduleSequencer ms;
+    public blinking_backlight bbl;
+    public ucomNumber ucomNb;
 
     public GameObject anim;
 
@@ -18,6 +20,11 @@ public class module1Controller : MonoBehaviour
     public GameObject sonar;
     public Transform coordC;
     private AudioSource sound;
+    public AudioSource reticuleSource;
+    public AudioSource newSignal;
+    public AudioClip retMoveSound;
+    public AudioClip successSound;
+    //public AudioClip newSignalSound;
     private bool inMod;
 
     public GameObject emptyScreen;
@@ -25,6 +32,7 @@ public class module1Controller : MonoBehaviour
     public GameObject screen1;
     public GameObject reticule;
     public GameObject words;
+    public GameObject wordsLoc;
 
     public float distVal = 0.1f;
     public bool nextStep = false;
@@ -96,11 +104,24 @@ public class module1Controller : MonoBehaviour
 
         if (actif && !ca.actif && on)
         {
+            //bbl.muteSoundAlarm = true;
+
+            reticuleSource.clip = retMoveSound;
             if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
+                //bbl.alarmOn = false;
+                //StopCoroutine(newSignalLoop());
                 words.SetActive(false);
+                if(!reticuleSource.isPlaying)
+                {
+                    reticuleSource.Play();
+                }
             }
-            float dirX = pointeur.transform.position.x + Input.GetAxisRaw("Horizontal") * speed *Time.deltaTime;
+            else if (reticuleSource.isPlaying)
+            {
+                reticuleSource.Stop();
+            }
+            float dirX = pointeur.transform.position.x + Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
             float dirY = pointeur.transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.deltaTime ;
             dirX = Mathf.Round(dirX/pxSize) * pxSize;
             dirY = Mathf.Round(dirY/pxSize) * pxSize;
@@ -140,7 +161,7 @@ public class module1Controller : MonoBehaviour
     {
         if (Vector3.Distance(sonar.transform.position,pointeur.transform.position) < sound.maxDistance)
         {
-            sound.volume = Mathf.Pow(1 - (Vector3.Distance(sonar.transform.position,pointeur.transform.position) / sound.maxDistance),4.0f);
+            sound.volume = Mathf.Clamp(Mathf.Pow(1 - (Vector3.Distance(sonar.transform.position,pointeur.transform.position) / sound.maxDistance),4.0f),0.04f, 0.4f);
             flickerInterval = Vector3.Distance(sonar.transform.position,pointeur.transform.position)/4.0f;
         }
 
@@ -184,7 +205,7 @@ public class module1Controller : MonoBehaviour
     {
         initPos = pointeur.transform.position;
         
-        //words.SetActive(true);
+        words.SetActive(true);
         emptyScreen.SetActive(true);
         light.SetActive(true);
         screenDark.SetActive(true);
@@ -201,12 +222,14 @@ public class module1Controller : MonoBehaviour
             //words.SetActive(true);
             //actif = true;
             on = true;
-        } 
+        }
+        ucomNb.updateNumber(ms.loopNumber, ms.lastLoopCount);
     }
 
     public void turnOff()
     {
         words.SetActive(false);
+        wordsLoc.SetActive(false);
         on = false;
         //actif = false;
         light.SetActive(false);
@@ -220,6 +243,7 @@ public class module1Controller : MonoBehaviour
     public void turnOffReset()
     {
         words.SetActive(false);
+        wordsLoc.SetActive(false);
         light.SetActive(false);
         screen1.SetActive(false);
         reticule.SetActive(false);
@@ -232,6 +256,7 @@ public class module1Controller : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         words.SetActive(true);
+        //StartCoroutine(newSignalLoop());
         yield return new WaitForSeconds(1.5f);
         reticule.SetActive(true);
         screenDark.SetActive(false);
@@ -244,6 +269,11 @@ public class module1Controller : MonoBehaviour
 
     private IEnumerator success()
     {
+        reticuleSource.Stop();
+        reticuleSource.PlayOneShot(successSound);
+
+        wordsLoc.SetActive(true);
+
         //initPos = pointeur.transform.position;
         anim.SetActive(true);
         yield return new WaitForSeconds(1);
@@ -275,4 +305,15 @@ public class module1Controller : MonoBehaviour
     {
         initPos = pointeur.transform.position;
     }
+
+    /*private IEnumerator newSignalLoop()
+    {
+        while(true)
+        {
+            newSignal.PlayOneShot(newSignalSound);
+            yield return new WaitForSeconds(0.25f);
+            newSignal.PlayOneShot(newSignalSound);
+            yield return new WaitForSeconds(2.0f);
+        }      
+    }*/
 }

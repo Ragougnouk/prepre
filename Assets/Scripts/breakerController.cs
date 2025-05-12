@@ -15,6 +15,7 @@ public class breakerController : MonoBehaviour
     public boxNumber boxNb;
     public moduleSequencer ms;
     public randomEvent re;
+    public blinking_backlight bbl;
 
     public carnet_fill cf;
     public carnet_anim ca;
@@ -41,7 +42,12 @@ public class breakerController : MonoBehaviour
 
     public flicker[] lilFlick;
 
-    private bool inBoss = false;
+    private bool inBoss1 = false;
+    private bool inBoss2 = false;
+
+    public AudioSource[] breakerSource;
+    public AudioClip[] breakerSounds;
+    public Button[] switchesButton;
 
     //private IEnumerator lLeds;
 
@@ -63,10 +69,19 @@ public class breakerController : MonoBehaviour
 
     public void powerOn()
     {
+        bbl.alarmOn = false;
         mainSwitchOff.SetActive(false);
         mainSwitchOn.SetActive(true);
+        foreach (Button btn in switchesButton)
+        {
+            btn.interactable = false;
+        }
         if(ms.inLoop)
         {
+            foreach (Button btn in switchesButton)
+            {
+                btn.interactable = true;
+            }
             return;
         }
         //mainSwitchOn.GetComponent<Button>().interactable = false;
@@ -83,12 +98,20 @@ public class breakerController : MonoBehaviour
             re.stopNoise(i);
         }*/
 
-
+        StartCoroutine(breakerPoweringDown());
+        foreach (Button btn in switchesButton)
+        {
+            btn.interactable = false;
+        }
         mainSwitchOff.SetActive(true);
         mainSwitchOn.SetActive(false);
 
         if(ms.inLoop)
         {
+            foreach (Button btn in switchesButton)
+            {
+                btn.interactable = true;
+            }
             StartCoroutine(afterLoop());
             return;
         }
@@ -112,14 +135,16 @@ public class breakerController : MonoBehaviour
 
     private IEnumerator powerOnDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(breakerPoweringUp(1));
+        yield return new WaitForSeconds(0.25f);
         mod1.turnOn(mod1Delay);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.35f);
         mod2.turnOn();
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.45f);
         mod3.turnOn();
         mod3b.turnOn();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.55f);
         mod4.turnOn();
         //mainSwitchOn.GetComponent<Button>().interactable = true;
         if (first)
@@ -203,7 +228,7 @@ public class breakerController : MonoBehaviour
 
     private IEnumerator afterLoop()
     {
-        if(inBoss)
+        if(inBoss1 || inBoss2)
         {
             yield break;
         }
@@ -224,8 +249,16 @@ public class breakerController : MonoBehaviour
         StartCoroutine(littleLeds(false));
         yield return new WaitForSeconds(5.0f);
         ls.lightsOnRed();
-        StartCoroutine(re.bossStart());
-        inBoss = true;
+        if(ms.lastLoopCount > 4)
+        {
+            inBoss1 = true;
+        }
+        else
+        {
+            StartCoroutine(re.bossStart());
+            inBoss2 = true;
+        }
+        
     }
 
     public void mod1Switch(bool off)
@@ -292,6 +325,8 @@ public class breakerController : MonoBehaviour
             mod3b.on = false;
 
             re.stopNoise(2);
+            re.stopNoise(3);
+            re.stopNoise(4);
         }
         else
         {
@@ -337,5 +372,57 @@ public class breakerController : MonoBehaviour
     {
         lilFlick[i].enabled = false;
         lilFlick[j].enabled = false;
+    }
+
+    private IEnumerator breakerPoweringUp(int version)
+    {
+        if(version == 1)
+        {
+
+            breakerSource[0].PlayOneShot(breakerSounds[0]);
+            breakerSource[1].PlayOneShot(breakerSounds[1]);
+            breakerSource[2].PlayOneShot(breakerSounds[2]);
+            while(breakerSource[0].isPlaying)
+            {
+                yield return null;
+            }
+            //breakerSource[0].clip = breakerSounds[2];
+
+            breakerSource[0].Play();
+            breakerSource[1].Play();
+            breakerSource[2].Play();
+            foreach (Button btn in switchesButton)
+            {
+                btn.interactable = true;
+            }
+        }
+        else
+        {
+            //breakerSource[0].Play();
+        }
+        
+        yield return null;
+    }
+
+    private IEnumerator breakerPoweringDown()
+    {
+        breakerSource[0].Stop();
+        breakerSource[1].Stop();
+        breakerSource[2].Stop();
+
+        breakerSource[0].PlayOneShot(breakerSounds[3]);
+        breakerSource[1].PlayOneShot(breakerSounds[4]);
+        breakerSource[2].PlayOneShot(breakerSounds[5]);
+
+        while(breakerSource[0].isPlaying)
+        {
+            yield return null;
+        }
+
+        foreach (Button btn in switchesButton)
+        {
+            btn.interactable = true;
+        }
+        yield return null;
     }
 }

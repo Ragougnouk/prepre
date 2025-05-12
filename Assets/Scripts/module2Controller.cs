@@ -25,7 +25,13 @@ public class module2Controller : MonoBehaviour
     public GameObject signal;
     public GameObject ecran;
     public GameObject led1,led2,led3;
-    public Transform[] signalPos; 
+    public Transform[] signalPos;
+
+    public SpriteRenderer potRot;
+    public Sprite[] potSprite;
+    private int currentSpriteIndex = 0;
+    public float nextPotTime;
+    public float potTime;
 
     private bool p1,p2,p3 = false;
 
@@ -33,6 +39,7 @@ public class module2Controller : MonoBehaviour
     private Color origColor;
 
     public float speed = 1.0f;
+    public float smoothTime = 0.5f;
     public float pxSize = 0.04f;
 
     public float distDet = 0.1f;
@@ -47,11 +54,20 @@ public class module2Controller : MonoBehaviour
 
     public bool randomTarget = false;
 
+    float velocity = 0.0f;
+    float targetPos;
+
+    public AudioSource sin1;
+    public AudioSource sin2;
+    public AudioSource noise;
+    public AudioSource beep;
+
     // Start is called before the first frame update
     void Start()
     {
         coordC = cadre.transform.position;
         origColor = point1.GetComponent<SpriteRenderer>().color;
+        targetPos = caseDet.transform.position.x;
 
     }
 
@@ -113,10 +129,32 @@ public class module2Controller : MonoBehaviour
 
     void viseurMove()
     {
-        float dirX = caseDet.transform.position.x + Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+
+        //float dirX = caseDet.transform.position.x + Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        float moveInput = Input.GetAxisRaw("Horizontal");
+        targetPos += moveInput * speed * Time.deltaTime;
+        targetPos = Mathf.Clamp(targetPos,coordC.x, coordC.x + size);
+        float dirX = Mathf.SmoothDamp(caseDet.transform.position.x, targetPos, ref velocity, smoothTime);
+        //print(velocity);
+        sin1.volume = Mathf.Clamp(0.0032f * Mathf.Abs(velocity) - 0.0011f , 0.0f,0.01f);
+        sin2.volume = Mathf.Clamp(0.0032f * Mathf.Abs(velocity) - 0.0011f , 0.0f,0.005f);
+        sin2.pitch = Mathf.Clamp(Mathf.Abs(velocity)*0.635f + 0.778f,0.0f,3.0f);
+
+
+
         dirX = Mathf.Round(dirX/pxSize) * pxSize;
         dirX = Mathf.Clamp(dirX,coordC.x, coordC.x + size);
         caseDet.transform.position = new Vector3(dirX,caseDet.transform.position.y,0);
+
+        if(moveInput != 0 && Time.time > nextPotTime)
+        {
+            nextPotTime = Time.time + potTime;
+            potRot.sprite = potSprite[currentSpriteIndex];
+
+            // Alterne l'index du sprite
+            currentSpriteIndex = (currentSpriteIndex + 1) % 2;
+        }
+
     }
 
     void signalPinPoint()
@@ -148,6 +186,7 @@ public class module2Controller : MonoBehaviour
         if(point1.transform.position.x > caseDet.transform.position.x && point1.transform.position.x < (caseDet.transform.position.x +0.28f)) //Vector3.Distance(point1.transform.position,caseDet.transform.position) < distDet)
         {
             p1 = true;
+            
             SpriteRenderer point1C = point1.GetComponent<SpriteRenderer>();
             point1C.color = new Color(0,250,0);
             litLed += 1;
@@ -160,6 +199,7 @@ public class module2Controller : MonoBehaviour
         if(point2.transform.position.x > caseDet.transform.position.x && point2.transform.position.x < (caseDet.transform.position.x +0.28f))
         {
             p2 = true;
+            
             SpriteRenderer point2C = point2.GetComponent<SpriteRenderer>();
             point2C.color = new Color(0,250,0);
             litLed += 1;
@@ -172,6 +212,7 @@ public class module2Controller : MonoBehaviour
         if(point3.transform.position.x > caseDet.transform.position.x && point3.transform.position.x < (caseDet.transform.position.x +0.28f))
         {
             p3 = true;
+            
             SpriteRenderer point3C = point3.GetComponent<SpriteRenderer>();
             point3C.color = new Color(0,250,0);
             litLed += 1;
@@ -185,14 +226,20 @@ public class module2Controller : MonoBehaviour
         {
             if(litLed == 1)
             {
+                beep.pitch = 1.334f;
+                beep.Play();
                 led1.SetActive(true);
             }
             else if(litLed == 2)
             {
+                beep.pitch = 1.682f;
+                beep.Play();
                 led2.SetActive(true);
             }
             else if(litLed == 3)
             {
+                beep.pitch = 2f;
+                beep.Play();
                 led3.SetActive(true);
             }
         }
@@ -219,13 +266,13 @@ public class module2Controller : MonoBehaviour
 
     void randomSignalPosition()
     {
-        int[] usedIndices = new int[7];
+        /*int[] usedIndices = new int[7];
         int i1 = Random.Range(0,signalPos.Length);
         sig1.transform.position = signalPos[i1].position;
         usedIndices[0]= i1;
 
         int i2 = Random.Range(0,signalPos.Length);
-        if(usedIndices.Contains(i2))
+        if(usedIndices.Contains(i2))    
         {
             i2 = Random.Range(0,signalPos.Length);
         }
@@ -269,7 +316,32 @@ public class module2Controller : MonoBehaviour
         {
             i7 = Random.Range(0,signalPos.Length);
         }
-        sigs[3].transform.position = signalPos[i7].position;
+        sigs[3].transform.position = signalPos[i7].position;*/
+
+        List<int> availableIndices = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+
+        int randomIndex = Random.Range(0, availableIndices.Count);
+        int selectedValue = availableIndices[randomIndex];
+        sig1.transform.position = signalPos[selectedValue - 1].position;
+        availableIndices.RemoveAt(randomIndex);
+
+        randomIndex = Random.Range(0, availableIndices.Count);
+        selectedValue = availableIndices[randomIndex];
+        sig2.transform.position = signalPos[selectedValue - 1].position;
+        availableIndices.RemoveAt(randomIndex);
+
+        randomIndex = Random.Range(0, availableIndices.Count);
+        selectedValue = availableIndices[randomIndex];
+        sig3.transform.position = signalPos[selectedValue - 1].position;
+        availableIndices.RemoveAt(randomIndex);
+
+        for (int i = 0; i < sigs.Length;     i++)
+        {
+            randomIndex = Random.Range(0, availableIndices.Count);
+            selectedValue = availableIndices[randomIndex];
+            sigs[i].transform.position = signalPos[selectedValue - 1].position;
+            availableIndices.RemoveAt(randomIndex);
+        }
         
     }
 
@@ -308,7 +380,7 @@ public class module2Controller : MonoBehaviour
         signal.SetActive(false);
         blankScreen.SetActive(false);
         light.SetActive(false);
-        //reInit();
+        reInit();
     }
 
     public void turnOffReset()
@@ -319,16 +391,20 @@ public class module2Controller : MonoBehaviour
         blankScreen.SetActive(false);
         light.SetActive(false);
         reInit();
+        randomSignalPosition();
     }
 
     public void active()
     {
         actif = true;
         flckr.enabled = true;
-        randomSignalPosition();
+        //randomSignalPosition();
         ecran.SetActive(true);
         signal.SetActive(true);
         blankScreen.SetActive(false);
+        sin1.Play();
+        sin2.Play();
+        noise.Play();
         if(!on)
         {
             bc.flickOn(2,3);
@@ -337,6 +413,9 @@ public class module2Controller : MonoBehaviour
 
     public void inactive()
     {
+        sin1.Stop();
+        sin2.Stop();
+        noise.Stop();
         actif = false;
         flckr.enabled = false;
         light.SetActive(true);
@@ -346,6 +425,7 @@ public class module2Controller : MonoBehaviour
 
     private IEnumerator success()
     {
+        noise.Stop();
         actif = false;
         //cf.etape += 1;
         yield return new WaitForSeconds(1);
@@ -354,6 +434,30 @@ public class module2Controller : MonoBehaviour
             cf.newLine();
             ca.open();
         }*/
+        StartCoroutine(beepWin());
         StartCoroutine(ms.winMod2());
+    }
+
+    private IEnumerator beepWin()
+    {
+        beep.pitch = 1.334f;
+        beep.Play();
+        while(beep.isPlaying)
+        {
+            yield return null;
+        }
+        beep.pitch = 1.682f;
+        beep.Play();
+        while(beep.isPlaying)
+        {
+            yield return null;
+        }
+        beep.pitch = 2.0f;
+        beep.Play();
+        while(beep.isPlaying)
+        {
+            yield return null;
+        }
+        yield return null;
     }
 }

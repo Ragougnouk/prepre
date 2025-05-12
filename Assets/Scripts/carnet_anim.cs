@@ -11,6 +11,11 @@ public class carnet_anim : MonoBehaviour
     public Animator anim;
 
     public carnet_fill cf;
+
+    public AudioSource openClose;
+    public AudioClip[] bookSound;
+
+    public bool launched = false;
     
     // Start is called before the first frame update
     void Start()
@@ -21,9 +26,16 @@ public class carnet_anim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && launched)
         {
-            anim.SetTrigger("close");;
+            if(actif)
+            {
+                anim.SetTrigger("close");
+            }
+            else
+            {
+                open();
+            }
         }
     }
 
@@ -31,6 +43,7 @@ public class carnet_anim : MonoBehaviour
     {
         //cf.newLine();
         carnet.SetActive(true);
+        openClose.PlayOneShot(bookSound[0]);
         actif = true;
         iconClose.SetActive(true);
         iconOpen.SetActive(false);
@@ -40,6 +53,7 @@ public class carnet_anim : MonoBehaviour
     {
         actif = false;
         carnet.SetActive(false);
+        openClose.PlayOneShot(bookSound[1]);
         iconOpen.SetActive(true);
         iconClose.SetActive(false);
     }

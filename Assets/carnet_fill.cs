@@ -92,7 +92,7 @@ public class carnet_fill : MonoBehaviour
                 carnetItem[fillStep].SetActive(true);
                 fillStep +=1;
                 etapeList.Remove(7);
-                ca.open();
+                //ca.open();
             }
             else if(etape == 10)
             {
@@ -101,7 +101,7 @@ public class carnet_fill : MonoBehaviour
                 carnetItem[fillStep].SetActive(true);
                 fillStep +=1;
                 etapeList.Remove(10);
-                ca.open();
+                //ca.open();
             }
         }
         

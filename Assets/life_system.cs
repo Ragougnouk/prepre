@@ -12,6 +12,11 @@ public class life_system : MonoBehaviour
     public carnet_fill cf;
 
     public int healthPoints;
+
+    public GameObject missSeq;
+    public GameObject words;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +82,7 @@ public class life_system : MonoBehaviour
         //cf.etape -= 2;
         bc.mod1Delay = true;
         bc.powerOff();
+        StartCoroutine(lostSignal());
         //healthPoints =10;
     }
 
@@ -98,6 +104,15 @@ public void lightsOnRed()
             lightsRed[i].SetActive(true);
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    private IEnumerator lostSignal()
+    {
+        missSeq.SetActive(true);
+        //words.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        //words.SetActive(false);
+        missSeq.SetActive(false);
     }
 
 }

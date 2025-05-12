@@ -15,8 +15,14 @@ public class start_controller : MonoBehaviour
 
 	public string sceneName;
 
+	public AudioSource sceneTransition;
+
 	public LeanTweenType easeType;
 	public AnimationCurve curve1;
+
+	public float delayScene = 2.0f;
+
+	public Button startButton;
 
 	//public bool name_field = false;
     // Start is called before the first frame update
@@ -31,6 +37,11 @@ public class start_controller : MonoBehaviour
         if (nameMenu.activeSelf && Input.GetKeyDown(KeyCode.Return))
         {
         	NameRegister();
+        }
+        else if (nameMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+        	nameMenu.SetActive(false);
+        	startButton.enabled = true;
         }
     }
 
@@ -61,6 +72,7 @@ public class start_controller : MonoBehaviour
     private void launchAnim()
     {
     	nameMenu.SetActive(false);
+    	sceneTransition.Play();
     	LeanTween.moveY(background.GetComponent<RectTransform>(),140.0f,1.0f).setDelay(0.5f).setEase(easeType);
     	LeanTween.moveY(startMenu.GetComponent<RectTransform>(),500.0f,1.0f).setDelay(0.5f).setOnComplete(changeScene).setEase(easeType);
     }
@@ -68,7 +80,7 @@ public class start_controller : MonoBehaviour
 
 	private void changeScene()
 	{
-		SceneManager.LoadScene(sceneName);
+		StartCoroutine(waitScene());
 	}
 
     /*private IEnumerator launchGame()
@@ -78,4 +90,10 @@ public class start_controller : MonoBehaviour
     	yield return new WaitForSeconds(1);
     	SceneManager.LoadScene(sceneName);
     }*/
+
+    private IEnumerator waitScene()
+    {
+    	yield return new WaitForSeconds(delayScene);
+    	SceneManager.LoadScene(sceneName);
+    }
 }

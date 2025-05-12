@@ -11,6 +11,7 @@ public class navigationCarnet : MonoBehaviour
     public GameObject flDroite;
     public GameObject flGauche;
 
+    public bool carnetOp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,17 @@ public class navigationCarnet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(flGauche.activeSelf || flDroite.activeSelf)
+        {
+            if(Input.GetKeyDown("left"))
+            {
+                gaucheNav();
+            }
+            else if (Input.GetKeyDown("right"))
+            {
+                droiteNav();
+            }
+        }
     }
 
     public void droiteNav()

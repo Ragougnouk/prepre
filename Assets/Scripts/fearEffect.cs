@@ -32,12 +32,15 @@ public class fearEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ca.intensity.Override(caInt);
-        clrGr.hueShift.Override(hs);
+        
         if (fearOn)
         {
+            ca.intensity.Override(caInt);
             hs = Random.Range(-180,180);
+            clrGr.hueShift.Override(hs);
         }
+
+
     }
 
     public void raiseFear(float increaseTime)
@@ -48,13 +51,16 @@ public class fearEffect : MonoBehaviour
 
     public void stopFear(float downTime)
     {
-        fearOn = false;
+        
         LeanTween.value(house, 1.0f, 0.0f, downTime ).setOnUpdate( (float val) => { caInt = val ;} ).setEase(LeanTweenType.easeOutQuad).setOnComplete(endFear);
-        hs = 0;
+
     }
 
     private void endFear()
     {
         fe.enabled = false;
+        fearOn = false;
+        hs = 0;
+        clrGr.hueShift.Override(hs);
     }
 }

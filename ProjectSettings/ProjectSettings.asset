@@ -14,8 +14,8 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: PrePre
-  defaultCursor: {fileID: 2800000, guid: bfd23fce014d1394eb2c28911f581c08, type: 3}
-  cursorHotspot: {x: 10, y: 4}
+  defaultCursor: {fileID: 2800000, guid: bca074fce19a6c0469802f81e1812db2, type: 3}
+  cursorHotspot: {x: 5, y: 2}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
